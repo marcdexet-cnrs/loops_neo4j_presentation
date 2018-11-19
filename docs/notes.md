@@ -13,7 +13,7 @@ class: inverse middle
 
 ---
 
-class: splash middle center
+class: inverse middle center
 
 # Notions de base
 
@@ -132,19 +132,32 @@ Chaque entité est autonome dans sa définition. Il n'y a pas de **schéma dans 
 </center>
 
 ---
-# Node et Relationship
 
-## Properties 
+class: inverse middle center
 
-Les propriétés sont des dictionnaires décrivant chaque entité 
+# Présentation de Neo4j
+
+---
+
+# Licences
+
+
+## Neo4j Community Edition
+
+* GPL v3 license
+
+.quote[If you’re building an application that accesses a Neo4j database running inside your organization (or on any personal device), then you are free to use Community Edition, whether or not your software is closed source.]
+
 
 ---
 
-# Label
+class: inverse middle center
 
-Un label est une étiquette que l'on associé à un noeud.
+# Cypher
 
 ---
+
+
 
 ## Cypher
 
@@ -287,3 +300,14 @@ MATCH (ldap {name: 'ldap'}), (dns {name:'dns'}) RETURN ldap, dns
 
 ## Comment assurer l'unicité ?
 ## Comment supprimer 
+
+---
+# Inspirations
+
+https://fr.slideshare.net/jexp/geekout-publish &hearts;
+
+Faire des parallèles entre graph et cypher
+
+.big[&#9398; &#8594; &#9399;]
+
+https://unicode-table.com/en/search/?q=circled
