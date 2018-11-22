@@ -141,6 +141,8 @@ class: inverse middle center
 
 # Licences
 
+Il y a plusieurs modèles de licences, 
+
 
 ## Neo4j Community Edition
 
@@ -289,6 +291,34 @@ MATCH (ldap {name: 'ldap'}), (dns {name:'dns'}) RETURN ldap, dns
 └───────────────┴──────────────┘	
 </pre>
 
+
+
+---
+# Chargement Load CSV
+
+Il est possible de charger des données en CSV, à condition d'avoir données assez propres, et jusqu'à 10 Mo
+
+```cypher
+LOAD CSV WITH HEADERS FROM "https://data.enseignementsup-recherche.gouv.fr/explore/dataset/fr-esr_referentiel_metier_referens_3/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true" AS line FIELDTERMINATOR ';'
+MERGE 
+(bap:BAP 
+  {code: line.\`Code de la branche d’activité professionnelle`,
+   label: line.\`Branche d’activité professionnelle`}
+)
+MERGE (codeEmploiType:EmploiType {
+  code: line.\`Code emploi type`,
+    label: line.\`Intitulé de l’emploi type`
+})
+MERGE (codeEmploiType)-[:IS_IN]->(bap)
+    
+return bap, codeEmploiType
+```
+
+Pour les gros volumes, il faut utiliser un outil
+https://neo4j.com/developer/guide-import-csv/#_super_fast_batch_importer_for_huge_datasets
+
+
+
 ---
 # Commandes utiles Browser Neo4J
 
@@ -300,6 +330,9 @@ MATCH (ldap {name: 'ldap'}), (dns {name:'dns'}) RETURN ldap, dns
 
 ## Comment assurer l'unicité ?
 ## Comment supprimer 
+## Comment charger avec du json
+Ce n'est pas natif, il y a des extensions et un peu de bidouille pour cela
+https://neo4j.com/blog/cypher-load-json-from-url/
 
 ---
 # Inspirations
@@ -311,3 +344,14 @@ Faire des parallèles entre graph et cypher
 .big[&#9398; &#8594; &#9399;]
 
 https://unicode-table.com/en/search/?q=circled
+
+internals: 
+* https://fr.slideshare.net/thobe/an-overview-of-neo4j-internals
+* https://www.slideshare.net/anikishaev/neo4j-after-1-year-in-production
+* https://hackernoon.com/life-after-1-year-of-using-neo4j-4eca5ce95bf5
+
+
+---
+# Visualisation
+
+3Djs : https://github.com/eisman/neo4jd3
