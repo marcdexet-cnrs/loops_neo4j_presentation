@@ -355,3 +355,20 @@ internals:
 # Visualisation
 
 3Djs : https://github.com/eisman/neo4jd3
+
+
+---
+# Neo4j and notebooks
+https://blog.ouseful.info/2016/04/11/getting-started-with-the-neo4j-graph-database-linking-neo4j-and-jupyter-scipy-docker-containers-using-docker-compose/
+
+---
+# Utilité d'une base graphe
+
+Connexion de plusieurs silos
+
+---
+# Les autres langages
+
+* Cypher
+* GraphQL
+* gremlins
