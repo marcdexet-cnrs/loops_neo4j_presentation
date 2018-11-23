@@ -96,7 +96,13 @@ code {
   bottom: 3em;
   right: 3em;
 }
-
+.headnote {
+  font-size: 80%;
+  font-weight: 300;
+  position: absolute;
+  top: 3em;
+  right: 3em;
+}
 .small {
   font-size: 90%;
 }

@@ -351,6 +351,9 @@ internals:
 * https://hackernoon.com/life-after-1-year-of-using-neo4j-4eca5ce95bf5
 
 
+Tuto
+* https://stph.scenari-community.org/contribs/nos/Neo4j2/co/Neo4j-2.html
+* https://blog.octo.com/bases-de-donnees-graphes-un-tour-dhorizon/
 ---
 # Visualisation
 
@@ -360,6 +363,11 @@ internals:
 ---
 # Neo4j and notebooks
 https://blog.ouseful.info/2016/04/11/getting-started-with-the-neo4j-graph-database-linking-neo4j-and-jupyter-scipy-docker-containers-using-docker-compose/
+
+
+---
+# Gephi et neo4j
+
 
 ---
 # Utilité d'une base graphe
