@@ -63,7 +63,11 @@ Quand tous les noeuds sont reliés entre eux, le graphe est dit **complet**
 
 ---
 
-<iframe src="graphes/graph_obama.html" width="100%" height="500px"></iframe>
+<a href="graphes/graph_complexe.html" target="_blank">
+	<center>
+		<img src="graphes/graph_complexe.png" width="800px">
+	</center>
+</a>
 
 ---
 class: inverse middle center
@@ -97,7 +101,12 @@ Image http://www.cs.aucegypt.edu/~csci253/DBConcepts%20v2.htm
 
 
 ---
+name: graph_renew_sql
 # Base graphe, le renouveau NoSQL
+
+
+---
+template: graph_renew_sql
 
 ## L'hégémonie de l'approche SQL
 * Un standard de fait
@@ -105,12 +114,16 @@ Image http://www.cs.aucegypt.edu/~csci253/DBConcepts%20v2.htm
 * **ACID** (Atomicité, Cohérence, Isolation, Durabilité)
 * Plusieurs rôles : DBA, développeurs
 
+--
+
 ## Les limites de l'approche SQL
 * Peu adapté à des domaines très évolutifs
  * Processus lourd avec nombreux rôles
 * ACID => Problèmes de performance dans certains contextes
  * bases distribuées
- 
+
+--
+
 _Emergence du mouvement NoSql_
 
 ???
@@ -122,21 +135,39 @@ _Emergence du mouvement NoSql_
 
 
 ---
-# Base graphe, le renouveau NoSQL
+template: graph_renew_sql
 
 .big[**N**ot **O**nly **SQL**]
 
-## Besoins du terrain
+## Un mouvement venu du terrain
 * Mouvement initié par le web, big data
 * Solutions pensées par et pour des développeurs
+* Acteurs type Géant du web
+
+---
+template: graph_renew_sql
 
 ## Théorème CAP
-* Consistency, Availability, Partition
 * Un SGDB ne pourra jamais avoir que 2 propriétés sur 3.
 
+<center>
+	<img src="images/cap_theorem.png" width="500px">
+</center>
+
+
+---
+# Base graphe, le renouveau NoSQL
+
 ## Passage de ACID à BASE
-* **ACID** (Atomicité, Cohérence, Isolation, Durabilité)
-* **B**asically **A**vailable, **S**oft-state,  **E**ventually consistent 
+* **ACID**
+ * **A**tomicity &rarr; transaction
+ * **C**onsistency &rarr; intégrité d'une transaction à une autre
+ * **I**solation &rarr; pas d'interférence entre transactions
+ * **D**urability &rarr; la pérénité est assurée, même en cas de défaillance
+* **BASE**
+ * **B**asically **A**vailable &rarr; disponibilité la plupart du temps
+ * **S**oft-state &rarr; la consistence n'est pas toujours garantie
+ * **E**ventually consistent &rarr; la consistence arrivera à un moment
 
 
 ## Proposition d'autres modèles
@@ -147,14 +178,34 @@ _Emergence du mouvement NoSql_
 
 ???
 
+Basic Availability
+*   The database appears to work most of the time.
+
+Soft-state
+*  Stores don’t have to be write-consistent, nor do different replicas have to be mutually consistent all the time.
+
+Eventual consistency
+*  Stores exhibit consistency at some later point (e.g., lazily at read time).
+
+
+
 Difference entre base réseau et base graphe
 https://stackoverflow.com/questions/5040617/what-is-the-difference-between-a-graph-database-and-a-network-database
 
 En gros, une base graphe est plus flexible alors qu'une base réseau à plus de contraintes.
 Une base réseau a une notion de _nested_ avec une relation de _owner-member_
 
-
 ---
+class: inverse middle center
+
+# Les acteurs du marché des bases graphes
+* https://db-engines.com/en/ranking/graph+dbms
+
+
+
+
+
+
 
 class: inverse middle center
 
