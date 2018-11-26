@@ -8,10 +8,62 @@ avec Neo4J
 .headnote[Café Loops]
 
 ---
-class: inverse middle center
-# C'est quoi un "graphe"
+name: what_is_a_graph
+# C'est quoi un "graphe" ?
 
-_expliquez ce qu'est un graph_
+
+---
+
+template: what_is_a_graph
+
+Un _graphe_ est une structure composée de 
+* noeud (_vertex_)
+* d'arêtes (_edge_)
+
+Les _arêtes_ relient les _noeuds_.
+
+<a href="graphes/graph_01.html" target="_blank">
+	<center>
+		<img src="graphes/graph_01.png" width="800px">
+	</center>
+</a>
+
+---
+
+template: what_is_a_graph
+
+Un _graphe_ est une structure composée de 
+* noeud (_vertex_)
+* d'arêtes (_edge_)
+
+Les _arêtes_ relient les _noeuds_ et peuvent être **orientées**
+
+<a href="graphes/graph_02.html" target="_blank">
+	<center>
+		<img src="graphes/graph_02.png" width="800px">
+	</center>
+</a>
+
+---
+
+template: what_is_a_graph
+
+Un _graphe_ est une structure composée de 
+* noeud (_vertex_)
+* d'arêtes (_edge_)
+
+Quand tous les noeuds sont reliés entre eux, le graphe est dit **complet**
+
+<a href="graphes/graph_03.html" target="_blank">
+	<center>
+		<img src="graphes/graph_03.png" width="800px">
+	</center>
+</a>
+
+
+---
+
+<iframe src="graphes/graph_obama.html" width="100%" height="500px"></iframe>
 
 ---
 class: inverse middle center
@@ -81,6 +133,11 @@ _Emergence du mouvement NoSql_
 ## Théorème CAP
 * Consistency, Availability, Partition
 * Un SGDB ne pourra jamais avoir que 2 propriétés sur 3.
+
+## Passage de ACID à BASE
+* **ACID** (Atomicité, Cohérence, Isolation, Durabilité)
+* **B**asically **A**vailable, **S**oft-state,  **E**ventually consistent 
+
 
 ## Proposition d'autres modèles
 * clef-valeur

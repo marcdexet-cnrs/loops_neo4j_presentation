@@ -22,3 +22,34 @@
 - société
 - licences
 
+
+# Plan action nosql
+
+---
+# Les bases graphes dans l'histoires des bases
+
+## CODASYL
+
+Référence à [Codasyl](https://fr.wikipedia.org/wiki/Conference_on_Data_Systems_Languages) : 
+
+## Par rapport aux autres familles de bases NoSQL
+
+* 4 familles
+- Clef valeurs
+
+
+---
+# Les solutions de base graphe
+
+## Solutions open-source
+
+* titan (http://titan.thinkaurelius.com/) à l'arrêt
+* 
+
+## Solution propriétaires
+* https://aws.amazon.com/fr/neptune/
+
+
+---
+# Particularités de neo4j
+
