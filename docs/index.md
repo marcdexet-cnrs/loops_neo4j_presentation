@@ -497,6 +497,11 @@ Absence de **schéma dans la base** qui décrit ce qui doit être.
 ---
 # Label et Type
 
+* `Node` &rarr; zéro ou plusieurs `Label`
+* `Relationship` &rarr; un et un seul `Type`
+
+Les `Labels` et `Types` servent à créer des indexes.
+
 ---
 # Properties
 
