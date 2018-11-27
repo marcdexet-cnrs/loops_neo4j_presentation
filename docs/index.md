@@ -73,58 +73,97 @@ Quand tous les noeuds sont reliés entre eux, le graphe est dit **complet**
 class: inverse middle center
 # Un peu d'histoire
 
+
 ---
-# Base graphe, un vieux concept
+# La gestion des données
+Un problème vieux comme l'humanité
+
+## Un problème guidé par les moyens technologiques et le coût.
+* argile, papirus, papier, ...
+* bandes magnétiques, disques, mémoire
 
 .left-column[
-## CODASYL
-* _Conference on Data Systems Languages_
-* Réseau utilisé en _COBOL_.
- * Données organisées en _Record_ et liées par des liens 2 à 2
-* Navigation par pointeur vers les enregistremets liés.
+.center[*Bandes magnétiques*]
+<center>
+	<img src="images/bandes_magnetiques.png" width="300px">
+</center>
 ]
 
 .right-column[
+.center[*Disques durs*]
 <center>
-	<img src="http://www.cs.aucegypt.edu/~csci253/DBConcepts%20v2_files/image026.jpg" width="500px">
+	<img src="images/ibm350.jpg" width="300px">
+</center>
+]
+
+---
+# Base graphe, un vieux concept
+
+## CODASYL (Conference on Data Systems Languages)
+* Réseau utilisé en _COBOL_.
+* Navigation par pointeur vers les enregistrements liés.
+
+.left-column[
+.center[*Modèle hiérarchique*]
+<center>
+	<img src="images/hierachique.png" width="200px">
+</center>
+]
+
+.right-column[
+.center[*Modèle en réseau*]
+<center>
+	<img src="images/reseau.png" width="200px">
 </center>
 ]
 
 .reset-column[
-* Accès aux données en mode _navigationnel_ en mentionnant les relations _explicitement_ en passant d'un record à un autre.
+* Accès aux données en mode _navigationnel_   
+en mentionnant les relations _explicitement_   
+en passant d'un _record_ à un autre.
 ]
 
-.footnote[.small[ [Cours sur sgbd.developpez.com](https://sgbd.developpez.com/tutoriels/cours-complet-bases-de-donnees/?page=bases-de-donnees-reseaux-et-hierarchiques)]]
+.footnote[.small[ [Cours "bases de données réseau et hiérarchiques" sur sgbd.developpez.com](https://sgbd.developpez.com/tutoriels/cours-complet-bases-de-donnees/?page=bases-de-donnees-reseaux-et-hierarchiques)]]
 
 ???
 Image http://www.cs.aucegypt.edu/~csci253/DBConcepts%20v2.htm
 
 
 ---
-name: graph_renew_sql
-# Base graphe, le renouveau NoSQL
+# L'hégémonie des Base de Données Relationnelles
 
+## Approche par table de données et jointure par clef.
+<center>
+	<img src="images/SGBD_RELATIONNEL.png" width="400px">
+</center>
 
----
-template: graph_renew_sql
-
-## L'hégémonie de l'approche SQL
-* Un standard de fait
+## Un standard de fait
 * **SQL** langage de manipulation abstrait
 * **ACID** (Atomicité, Cohérence, Isolation, Durabilité)
 * Plusieurs rôles : DBA, développeurs
 
---
+_Oracle, Postgres, MySQL, MariaDB, SQLServer, ..._
 
-## Les limites de l'approche SQL
-* Peu adapté à des domaines très évolutifs
+
+---
+name: graph_renew_sql
+# Base graphe, le renouveau NoSQL
+
+---
+template: graph_renew_sql
+
+## Les limites de l'approche relationelle
+* Peu adapté à des domaines très évolutifs (agilité, first time to market)
  * Processus lourd avec nombreux rôles
-* ACID => Problèmes de performance dans certains contextes
- * bases distribuées
+* ACID => Problèmes de performance complexes dans certains contextes
+ * bases distribuées, sharding
 
 --
 
-_Emergence du mouvement NoSql_
+## Emergence du mouvement NoSql
+
+.center[.big[**N**ot **O**nly **SQL**]]
+
 
 ???
  * Atomicité &rarr; transaction
@@ -137,17 +176,31 @@ _Emergence du mouvement NoSql_
 ---
 template: graph_renew_sql
 
-.big[**N**ot **O**nly **SQL**]
+## NoSQL, un mouvement venu du terrain
+* Initié par les acteurs du web, du big data
+* Solutions pensées *par* et *pour* des développeurs
 
-## Un mouvement venu du terrain
-* Mouvement initié par le web, big data
-* Solutions pensées par et pour des développeurs
-* Acteurs type Géant du web
+--
+
+## Disparité des approches
+* Avant tout recherche de solutions en dehors des bases SQL.
+
+--
+
+### Propriétés **souvent** (mais pas toujours) associées :
+* Open source
+* API first (REST)
+* Grande influence du langage (ERLANG, javascript, java, C/C++)
+* Distribuée
+* Simples à installer (...)
+* Autonomie du développeur
 
 ---
 template: graph_renew_sql
 
-## Théorème CAP
+Légitimation par le théorème CAP
+
+## CAP (Availability, Consistency, Partition tolerance)
 * Un SGDB ne pourra jamais avoir que 2 propriétés sur 3.
 
 <center>
@@ -157,6 +210,7 @@ template: graph_renew_sql
 
 ---
 # Base graphe, le renouveau NoSQL
+(discutable)
 
 ## Passage de ACID à BASE
 * **ACID**
@@ -164,16 +218,19 @@ template: graph_renew_sql
  * **C**onsistency &rarr; intégrité d'une transaction à une autre
  * **I**solation &rarr; pas d'interférence entre transactions
  * **D**urability &rarr; la pérénité est assurée, même en cas de défaillance
+--
+
 * **BASE**
  * **B**asically **A**vailable &rarr; disponibilité la plupart du temps
  * **S**oft-state &rarr; la consistence n'est pas toujours garantie
  * **E**ventually consistent &rarr; la consistence arrivera à un moment
 
+--
 
 ## Proposition d'autres modèles
-* clef-valeur
-* document
-* colonne
+* Clef-valeur
+* Document
+* Colonne
 * **graphe**
 
 ???
@@ -195,21 +252,130 @@ https://stackoverflow.com/questions/5040617/what-is-the-difference-between-a-gra
 En gros, une base graphe est plus flexible alors qu'une base réseau à plus de contraintes.
 Une base réseau a une notion de _nested_ avec une relation de _owner-member_
 
+
+---
+# Les acteurs du monde des bases de données
+
+## Les bases graphes sont très minoritaires
+
+<center>
+  <img src="images/2018-11-27_DB-Engines_Ranking_per_database_model_category_SCORE.png" width="600px">
+</center>
+
+
+.footnote[.small[https://db-engines.com/]]
+
+---
+# Les acteurs du monde des bases de données
+
+## Les bases graphes intéressent de plus en plus
+
+<center>
+  <img src="images/2018-11-27_DB-Engines_Ranking_per_database_model_category_all.png" width="800px">
+</center>
+
+
+.footnote[.small[https://db-engines.com/]]
+
+
+---
+# Les acteurs du monde des bases de données
+
+## Parmis ces bases, Neo4j
+
+<center>
+  <img src="images/2018-11-27_DB-Engines_Ranking.png" width="800px">
+</center>
+
+
+.footnote[.small[https://db-engines.com/]]
+
+
+---
+# Les acteurs du monde des bases de données
+
+## Parmis ces bases, Neo4j
+
+<center>
+  <img src="images/2018-11-27_DB-Engines_Ranking_graph.png" width="600px">
+</center>
+
+
+.footnote[.small[https://db-engines.com/]]
+
 ---
 class: inverse middle center
 
-# Les acteurs du marché des bases graphes
-* https://db-engines.com/en/ranking/graph+dbms
+# Neo4j
 
 
+---
+# Neo4j, la société
+
+Neo4j est développé par la société suédoise _Neo4j Inc._ 
+
+## Histoire
+* **2000**: Constat d'échecs à gérer des données très connectées
+* **2002**: Premier prototype de Neo4j
+* **2007**: Création de la société Neo4j
+* **2010**: Neo4j V1 en 2010 (GPL)
+* **2016**: Neo4j V3
+
+## Clients 
+* Walmart, UBS, ebay, Cisco, LinkedIn, HP, Airbus...
 
 
+???
+Emil, Peter et Johan se battent pour trouver des connexions entre données dans une base Informix.  
+Les requêtes deviennent très complexes et inmaintenables.
 
+Series A and Series B rounds are funding rounds for earlier stage companies and range on average between $1M–$30M.
 
+Series C rounds and onwards are for later stage and more established companies. These rounds are usually $10M+ and are often much larger.
 
+---
+# Neo4j, le produit
+
+* Développé en open-source (https://github.com/neo4j/neo4j)
+* Moteur écrit en Java
+
+## Double licence
+
+* **Community** :  GPL v3
+* **Enterprise**: AGPL avec licence commerciale  
+étend la version community avec des composants en _closed source_.
+
+## Usage Open source
+La version Entreprise peut-être [utilisée pour des produits open-source](https://neo4j.com/Open-Source/) 
+
+.center[.quote["If you are building an open source project to benefit the world at large, we are pleased to offer Neo4j Enterprise Edition under the AGPL for this express use."]]
+
+---
+# Neo4j, le produit
+
+## Base graphe 
+* Transactionnelle ACID
+* Haute disponibilité
+
+## Plusieurs drivers
+
+* _Officiels_ : java, python, javascript, .Net.
+* _Community_ : Ruby, PHP, R, Go, Erlang, C/C++, Clojure, Perl, Haskell
+
+## Plusieurs API 
+* Endpoint REST like 
+* Protocole BOLT : connecté binaire sur TCP ou web sockets.
+
+## Un langage CYPHER
+```cypher
+CREATE (p:Person {firstName:{name}}) RETURN p
+```
+
+---
 class: inverse middle center
 
 # Notions de base
+Culture Neo4j
 
 ---
 name: notion_de_base_node
@@ -262,8 +428,6 @@ Avec
 * des propriétés 
 * un ou **plusieurs labels** 
 
-Les labels servent également à l'indexation.
-
 ---
 name: notion_de_base_relationship
 
@@ -313,23 +477,53 @@ Avec
 
 ## First-Class Citizen
 
-Les deux types sont de la même importance, il n'y a pas d'entité privilégiée par rapport à une autre, comme la table définie en SQL et la jointure comme un moyen de relier les tables.
+* `Node` et `RelationShip` &rarr; même *importance*, 
+* Pas de type privilégié par rapport à un autre
+ * Comme les tables en SQL et la jointure comme un moyen de relier les tables.
 
 --
 
-## Instance vs classe
-
-Chaque entité est autonome dans sa définition. Il n'y a pas de **schéma dans la base** qui décrit ce qu'est un auteur ou un livre.
+## Pas de schéma
+Absence de **schéma dans la base** qui décrit ce qui doit être.
 
 <center>
 	<img src="images/no_schema.svg">
 </center>
 
+--
 
+.quote[.big[La cohérence doit être garantie par le processus]]
 
 ---
-# SQL vs Graphe
-Passage obligatoire, après la théorie
+# Label et Type
+
+---
+# Properties
+
+Les  propriétés sont un dictionniaire de clef-valeur
+* clef : chaîne de caractères
+* valeur : scalaire ou liste de scalaire
+
+## Types de scalaire ou liste de scalaire
+.left-column[
+* _Numérique_ :
+ * Integer
+ * Float
+* Chaîne de caractère
+* Booléen
+]
+
+.right-column[
+* _Spatial_:
+  * Point
+* _Temporel_:
+  *  Date
+  *  Time
+  *  LocalTime
+  *  DateTime
+  *  LocalDateTime
+  *  Duration
+]
 
 ---
 class: inverse middle center
@@ -344,27 +538,9 @@ class: inverse middle center
 * Algorithmes classiques de la théorie des graphes (plus court chemin, Dijsktra, A\*, calcul de centralité…)
 
 ---
-class: inverse middle center
-# Etat de lieux rapides
+# SQL vs Graphe
+Passage obligatoire, après la théorie
 
----
-# PLAN Etat de lieux rapides
-## Dynamisme du marché
-* nombreuses bases graphes
-
----
-class: inverse middle center
-# Présentation NEO4J
-
----
-# PLAN Présentation NEO4J
-
----
-class: inverse middle center
-# Principes de base
-
----
-# PLAN principes de base
 
 
 ---
