@@ -3,10 +3,11 @@
   <script type="text/javascript" src="../js/vis.js"></script>
   <link href="../css/vis.css" rel="stylesheet" type="text/css">
   <script type="text/javascript" src="../js/draw_network.js"></script>
+  <meta charset="UTF-8">
 </head>
 <body>
 
-  <div id="graph_01"></div>
+  <div id="graph_03"></div>
   <div id="configure"></div>
 
   <script type="text/javascript">
@@ -32,16 +33,17 @@
       {"from": 4, "to": 5},
       ];
 
-    physics =   { 
-      "hierarchicalRepulsion": {
-        "centralGravity": 0
-      },
-      "minVelocity": 0.75,
-      "solver": "hierarchicalRepulsion"
+    options= { 
+      'physics': { 
+        "hierarchicalRepulsion": {
+          "centralGravity": 0
+        },
+        "minVelocity": 0.75,
+        "solver": "hierarchicalRepulsion"
+      }
     };
 
-    drawNetwork("graph_01", nodes, edges, physics,true);
-
+    drawNetwork("graph_03", nodes, edges, options,true);
   </script>
 </body>
 </html>

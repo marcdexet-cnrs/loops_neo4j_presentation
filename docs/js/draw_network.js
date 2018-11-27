@@ -1,4 +1,4 @@
-function drawNetwork(divId, nodes, edges, physics,showConfigure=false,divIdConfigure="configure"){
+function drawNetwork(divId, nodes, edges, options, showConfigure=false,divIdConfigure="configure"){
   
       var container = document.getElementById(divId)
 
@@ -32,7 +32,8 @@ function drawNetwork(divId, nodes, edges, physics,showConfigure=false,divIdConfi
               },
               smooth: {enabled: false}
           },
-          physics: physics
+          physics: options['physics'],
+          layout:  options['layout']
       };
 
       var network = new vis.Network(container, data, options);
@@ -40,14 +41,16 @@ function drawNetwork(divId, nodes, edges, physics,showConfigure=false,divIdConfi
 
 
 function defaultDrawNetwork(divId, nodes, edges,) {
-  physics = {
+  options = {
+          physics: {
               enabled: true,
               barnesHut: {
                   centralGravity: 0.01,
                   springLength: 55
                   },
               minVelocity: 0.75
-          };
-  drawNetwork(divId, nodes, edges, physics)
+          }
+    };
+  drawNetwork(divId, nodes, edges, options)
 }
 

@@ -17,7 +17,7 @@ name: what_is_a_graph
 template: what_is_a_graph
 
 Un _graphe_ est une structure composée de 
-* noeud (_vertex_)
+* noeuds (_vertex_)
 * d'arêtes (_edge_)
 
 Les _arêtes_ relient les _noeuds_.
@@ -33,7 +33,7 @@ Les _arêtes_ relient les _noeuds_.
 template: what_is_a_graph
 
 Un _graphe_ est une structure composée de 
-* noeud (_vertex_)
+* noeuds (_vertex_)
 * d'arêtes (_edge_)
 
 Les _arêtes_ relient les _noeuds_ et peuvent être **orientées**
@@ -49,7 +49,7 @@ Les _arêtes_ relient les _noeuds_ et peuvent être **orientées**
 template: what_is_a_graph
 
 Un _graphe_ est une structure composée de 
-* noeud (_vertex_)
+* noeuds (_vertex_)
 * d'arêtes (_edge_)
 
 Quand tous les noeuds sont reliés entre eux, le graphe est dit **complet**
@@ -78,7 +78,7 @@ class: inverse middle center
 # La gestion des données
 Un problème vieux comme l'humanité
 
-## Un problème guidé par les moyens technologiques et le coût.
+## Guidé par les moyens technologiques et le coût.
 * argile, papirus, papier, ...
 * bandes magnétiques, disques, mémoire
 
@@ -99,8 +99,9 @@ Un problème vieux comme l'humanité
 ---
 # Base graphe, un vieux concept
 
-## CODASYL (Conference on Data Systems Languages)
-* Réseau utilisé en _COBOL_.
+## Premières bases sont des graphes
+* CODASYL (Conference on Data Systems Languages)
+* _COBOL_.
 * Navigation par pointeur vers les enregistrements liés.
 
 .left-column[
@@ -324,6 +325,9 @@ Neo4j est développé par la société suédoise _Neo4j Inc._
 ## Clients 
 * Walmart, UBS, ebay, Cisco, LinkedIn, HP, Airbus...
 
+## Matrix
+* Film de référence et omniprésent dans la culture *neo*4J.
+
 
 ???
 Emil, Peter et Johan se battent pour trouver des connexions entre données dans une base Informix.  
@@ -368,7 +372,7 @@ La version Entreprise peut-être [utilisée pour des produits open-source](https
 
 ## Un langage CYPHER
 ```cypher
-CREATE (p:Person {firstName:{name}}) RETURN p
+CREATE (p:Person {firstName: "name"}) RETURN p
 ```
 
 ---
@@ -447,7 +451,6 @@ Avec
 * un noeud de **départ** et un noeud d'**arrivé**
 
 
-
 ---
 template: notion_de_base_relationship
 
@@ -471,6 +474,11 @@ Avec
 * un et un seul type
 * et des **propriétés**
 
+--
+
+-----
+
+.center[.quote[C'est toujours un lien orienté]]
 
 ---
 # Node et Relationship
@@ -500,16 +508,17 @@ Absence de **schéma dans la base** qui décrit ce qui doit être.
 * `Node` &rarr; zéro ou plusieurs `Label`
 * `Relationship` &rarr; un et un seul `Type`
 
-Les `Labels` et `Types` servent à créer des indexes.
+Les `Labels` et `Types` servent à créer des indexes _par_ propriétés   
+pour aisement retrouver `Nodes` et `Relationship`.
 
 ---
 # Properties
 
-Les  propriétés sont un dictionniaire de clef-valeur
+Dictionniaire de clef-valeur
 * clef : chaîne de caractères
 * valeur : scalaire ou liste de scalaire
 
-## Types de scalaire ou liste de scalaire
+## Types de scalaire
 .left-column[
 * _Numérique_ :
  * Integer
@@ -531,6 +540,263 @@ Les  propriétés sont un dictionniaire de clef-valeur
 ]
 
 ---
+# Path
+
+Un `Path` est un ensemble de _noeuds_ et de _relations_ reliant 
+- un noeud de départ 
+- et un noeud d'arrivé
+
+<a href="graphes/graph_path.html" target="_blank">
+	<center>
+		<img src="graphes/graph_path.png" width="800px">
+	</center>
+</a>
+
+---
+# Traversal
+
+Un `Traversal` est moyen de collecter des  _path_, des _noeuds_ et de _relations_ en suivant des règles et un algorithme.
+
+## Approche impérative (HOW)
+* Framework java uniquement
+* Assez hardu
+* https://neo4j.com/docs/java-reference/3.4/tutorial-traversal/
+
+## Approche declarative (WHAT)
+* Langage CYPHER
+
+
+---
+class: inverse middle center
+# Cypher
+Celui qui préférait la matrice.
+
+
+---
+name: cypher_101
+
+# Cypher
+## Pattern Ascii Art
+
+---
+template: cypher_101
+
+.center[**Noeud <=> parentèses**]
+
+<center>
+  <img src="images/node_detail_0.svg" height="50%">
+</center>
+
+.center[.mega-huge[.quote[()]]]
+
+
+---
+template: cypher_101
+
+.center[**Relation orientée <=> crochet et flèches**]
+
+<center>
+  <img src="images/graphs-different_nodes.svg" height="30%">
+</center>
+
+.center[.mega-huge[.quote[()-\[\]->()]]]
+
+
+---
+template: cypher_101
+
+.center[**Relation non orientée <=> crochet et tirés**]
+
+<center>
+  <img src="images/graphs-non-orienté.svg" height="30%">
+</center>
+
+.center[.mega-huge[.quote[()-\[\]-()]]]
+
+
+---
+template: cypher_101
+
+.center[**Relation anonyme orientée <=> tirés + flèche**]
+
+<center>
+  <img src="images/graphs-sans-relation-o.svg" height="30%">
+</center>
+
+.center[.mega-huge[.quote[()-->()]]]
+
+---
+template: cypher_101
+
+.center[**Relation anonyme non orientée <=> tirés**]
+
+<center>
+  <img src="images/graphs-sans-relation-no.svg" height="30%">
+</center>
+
+.center[.mega-huge[.quote[()--()]]]
+
+
+---
+template: cypher_101
+
+.center[**Propriétés <=> accolades**]
+
+<center>
+  <img src="images/properties.svg" height="50%">
+</center>
+
+.center[.mega-huge[.quote[({name:"foo"})]]]
+
+---
+template: cypher_101
+
+.center[**Label,Type <=> deux points + nom**]
+
+<center>
+  <img src="images/graphs-label.svg" height="50%">
+</center>
+
+.center[.mega-huge[.quote[(:Label)]]]
+
+
+---
+template: cypher_101
+
+.center[**variable**]
+
+.center[.mega-huge[.quote[(name:Label {key:value})]]]
+
+--
+
+## Expressions valides
+
+.center[.mega-huge[.quote[(name {key:value})]]]
+.center[.mega-huge[.quote[(name)]]]
+.center[.mega-huge[.quote[(:Label {key:value})]]]
+
+---
+template: cypher_101
+
+## Exemples de pattern
+.center[
+```cypher
+(a:Author)-[r:WRITE]->(b:Book) 
+```
+]
+
+--
+
+.center[
+```cypher
+(a:Author)-->(b:Book) 
+```
+]
+
+--
+
+.center[
+```cypher
+(a:Author)-[:WRITE]->(b:Book)<-[:READ]-(r:Reader)
+```
+]
+
+--
+
+.center[
+```cypher
+(a:Author)-->(b:Book)<--(r:Reader)
+```
+]
+
+---
+name: cypher_clause
+# Cypher, les clauses
+
+---
+template: cypher_clause
+
+## Principes généraux
+
+Elles s'expriment toujours avec un pattern en ascii-art
+
+## Types
+* Lecture
+* Projection
+* Création /Modification
+
+## Nombreuses clauses et sous clauses
+* https://neo4j.com/docs/developer-manual/current/cypher/clauses/
+
+
+
+---
+name: cypher_match
+# MATCH
+
+---
+template: cypher_match
+
+* La plus utilisée
+
+```cypher
+MATCH <pattern> RETURN <valeurs> 
+```
+
+--
+
+Tous les noeuds
+```cypher
+MATCH (n) RETURN n
+```
+
+--
+
+Tous les noeuds dont le nom est _John_
+```cypher
+MATCH (n {name: 'John'}) RETURN n
+```
+
+--
+
+Tous les noeuds que tous les _John_ connaissent
+```cypher
+MATCH (n {name: 'John'})-[:KNOW]->(m) RETURN m
+```
+
+---
+template: cypher_match
+
+* Tous les titres de livres de tous les auteurs 
+ * dont le nom est 'Hamilton', 
+ * le prénom 'Peter'
+
+```cypher
+MATCH 
+(a:Author {lastname: 'Hamilton', firstname: 'Peter'}-[:WRITE]->(b:Book)) 
+RETURN b.title 
+```
+
+
+
+---
+# Cypher
+
+## Langage déclaratif
+* Décrire ce que qui est souhaité et non comment l'obtenir
+
+## Pattern matching 
+* Cyph 
+
+
+---
+# OpenCypher
+
+2015
+
+http://www.opencypher.org/
+
+
 class: inverse middle center
 # Un peu de théorie
 
@@ -552,3 +818,5 @@ Passage obligatoire, après la théorie
 class: inverse middle center
 # Sous le capot
 * Neo4j utilise assez habilement des indexes et de  l'adjacence. Les indexes pour localiser les points de départs
+
+* https://neo4j.com/blog/graph-search-algorithm-basics/

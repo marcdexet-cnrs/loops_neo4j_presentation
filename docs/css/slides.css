@@ -120,6 +120,9 @@ code {
 .huge {
   font-size: 180%;
 }
+.mega-huge {
+  font-size: 200%;
+}
 .red {color:red;}
 .green {color:green;}
 .reminder {

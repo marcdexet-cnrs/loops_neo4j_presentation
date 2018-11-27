@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  <div id="ff95be68-8d58-4e05-bf0c-dd1674b1a83a"></div>
+  <div id="graph"></div>
   <div id="configure"></div>
 
   <script type="text/javascript">
@@ -140,19 +140,21 @@
 { "from": "LRH", "to": "LIL", "label": "FOO-29-13"},
 { "from": "LRH", "to": "PPT", "label": "FOO-29-17"},];
 
-    physics =   {
-    "barnesHut": {
-      "gravitationalConstant": -24950,
-      "centralGravity": 0,
-      "springLength": 75,
-      "springConstant": 0.035,
-      "avoidOverlap": 0.75
-    },
-    "minVelocity": 0.48
-  };
+    options = { 
+      'physics': {
+        "barnesHut": {
+          "gravitationalConstant": -24950,
+          "centralGravity": 0,
+          "springLength": 75,
+          "springConstant": 0.035,
+          "avoidOverlap": 0.75
+        },
+        "minVelocity": 0.48
+      }
+    };
 
     
-    drawNetwork("ff95be68-8d58-4e05-bf0c-dd1674b1a83a", nodes, edges,physics,true);
+    drawNetwork("graph", nodes, edges,options,true);
 
   </script>
 </body>
