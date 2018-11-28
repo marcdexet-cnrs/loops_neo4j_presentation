@@ -71,7 +71,8 @@ Quand tous les noeuds sont reliés entre eux, le graphe est dit **complet**
 
 ---
 class: inverse middle center
-# Un peu d'histoire
+# Pourquoi une base graphe ?
+Un peu d'histoire
 
 
 ---
@@ -131,20 +132,21 @@ Image http://www.cs.aucegypt.edu/~csci253/DBConcepts%20v2.htm
 
 
 ---
-# L'hégémonie des Base de Données Relationnelles
-
-## Approche par table de données et jointure par clef.
-<center>
-	<img src="images/SGBD_RELATIONNEL.png" width="400px">
-</center>
+# L'hégémonie des Bases de Données Relationnelles
 
 ## Un standard de fait
-* **SQL** langage de manipulation abstrait
+* **SQL** langage de manipulation abstrait normé 
 * **ACID** (Atomicité, Cohérence, Isolation, Durabilité)
 * Plusieurs rôles : DBA, développeurs
 
 _Oracle, Postgres, MySQL, MariaDB, SQLServer, ..._
 
+
+## Approche par table de données et jointure par clef.
+* Orientée _ligne_
+<center>
+	<img src="images/SGBD_RELATIONNEL.png" width="300px">
+</center>
 
 ---
 name: graph_renew_sql
@@ -154,7 +156,7 @@ name: graph_renew_sql
 template: graph_renew_sql
 
 ## Les limites de l'approche relationelle
-* Peu adapté à des domaines très évolutifs (agilité, first time to market)
+* Peu adapté à des domaines très évolutifs
  * Processus lourd avec nombreux rôles
 * ACID => Problèmes de performance complexes dans certains contextes
  * bases distribuées, sharding
@@ -178,8 +180,8 @@ template: graph_renew_sql
 template: graph_renew_sql
 
 ## NoSQL, un mouvement venu du terrain
-* Initié par les acteurs du web, du big data
-* Solutions pensées *par* et *pour* des développeurs
+* Initié par les acteurs du web et du big data,
+* Solutions pensées *par* et *pour* des développeurs.
 
 --
 
@@ -199,7 +201,7 @@ template: graph_renew_sql
 ---
 template: graph_renew_sql
 
-Légitimation par le théorème CAP
+Légitimation par le théorème CAP ([Eric A. Brewer](https://en.wikipedia.org/wiki/Eric_Brewer_(scientist)))
 
 ## CAP (Availability, Consistency, Partition tolerance)
 * Un SGDB ne pourra jamais avoir que 2 propriétés sur 3.
@@ -208,7 +210,7 @@ Légitimation par le théorème CAP
 	<img src="images/cap_theorem.png" width="500px">
 </center>
 
-
+.footnote[.small[[Maitrisez le théorème de CAP](https://openclassrooms.com/fr/courses/4462426-maitrisez-les-bases-de-donnees-nosql/4462471-maitrisez-le-theoreme-de-cap)]]
 ---
 # Base graphe, le renouveau NoSQL
 (discutable)
@@ -232,7 +234,7 @@ Légitimation par le théorème CAP
 * Clef-valeur
 * Document
 * Colonne
-* **graphe**
+* **Graphe**
 
 ???
 
@@ -255,9 +257,9 @@ Une base réseau a une notion de _nested_ avec une relation de _owner-member_
 
 
 ---
-# Les acteurs du monde des bases de données
+# Les principaux acteurs
 
-## Les bases graphes sont très minoritaires
+## Les bases graphes sont toujours très minoritaires...
 
 <center>
   <img src="images/2018-11-27_DB-Engines_Ranking_per_database_model_category_SCORE.png" width="600px">
@@ -267,9 +269,9 @@ Une base réseau a une notion de _nested_ avec une relation de _owner-member_
 .footnote[.small[https://db-engines.com/]]
 
 ---
-# Les acteurs du monde des bases de données
+# Les principaux acteurs
 
-## Les bases graphes intéressent de plus en plus
+## ... mais elles intéressent de plus en plus.
 
 <center>
   <img src="images/2018-11-27_DB-Engines_Ranking_per_database_model_category_all.png" width="800px">
@@ -280,7 +282,7 @@ Une base réseau a une notion de _nested_ avec une relation de _owner-member_
 
 
 ---
-# Les acteurs du monde des bases de données
+# Les principaux acteurs
 
 ## Parmis ces bases, Neo4j
 
@@ -293,7 +295,7 @@ Une base réseau a une notion de _nested_ avec une relation de _owner-member_
 
 
 ---
-# Les acteurs du monde des bases de données
+# Les principaux acteurs
 
 ## Parmis ces bases, Neo4j
 
@@ -308,7 +310,7 @@ Une base réseau a une notion de _nested_ avec une relation de _owner-member_
 class: inverse middle center
 
 # Neo4j
-
+Welcome in the Matrix
 
 ---
 # Neo4j, la société
@@ -318,12 +320,14 @@ Neo4j est développé par la société suédoise _Neo4j Inc._
 ## Histoire
 * **2000**: Constat d'échecs à gérer des données très connectées
 * **2002**: Premier prototype de Neo4j
-* **2007**: Création de la société Neo4j
+* **2007**: Création de la société Neo4j Inc.
 * **2010**: Neo4j V1 en 2010 (GPL)
 * **2016**: Neo4j V3
 
 ## Clients 
 * Walmart, UBS, ebay, Cisco, LinkedIn, HP, Airbus...
+
+--
 
 ## Matrix
 * Film de référence et omniprésent dans la culture *neo*4J.
@@ -361,17 +365,23 @@ La version Entreprise peut-être [utilisée pour des produits open-source](https
 * Transactionnelle ACID
 * Haute disponibilité
 
+--
+
 ## Plusieurs drivers
 
 * _Officiels_ : java, python, javascript, .Net.
 * _Community_ : Ruby, PHP, R, Go, Erlang, C/C++, Clojure, Perl, Haskell
 
+--
+
 ## Plusieurs API 
 * Endpoint REST like 
 * Protocole BOLT : connecté binaire sur TCP ou web sockets.
 
+--
+
 ## Un langage CYPHER
-```cypher
+```python
 CREATE (p:Person {firstName: "name"}) RETURN p
 ```
 
@@ -565,23 +575,134 @@ Un `Traversal` est moyen de collecter des  _path_, des _noeuds_ et de _relations
 ## Approche declarative (WHAT)
 * Langage CYPHER
 
+---
+class: inverse middle center
+# Effet tableau blanc
+
+---
+# La représentation est le modèle
+
+## Pas de transposition dans un autre formalisme
+### Avec une base relationnelle
+_Modèle UML_
+<center>
+	<img src="images/graphs-uml-to-db.svg">
+</center>
+
+--
+
+_Modèle de données_
+<center>
+	<img src="images/graphs-uml-to-db2.svg">
+</center>
+
+
+---
+# La représentation est le modèle
+
+## Pas de transposition dans un autre formalisme
+### Avec une base graphe
+_Modèle UML_
+<center>
+	<img src="images/graphs-uml-to-db.svg">
+</center>
+
+--
+
+_Modèle de données_
+<center>
+	<img src="images/graphs-uml-to-db3.svg">
+</center>
+
+--
+
+Et c'est tout...
+
+---
+
+<a href="graphes/graph_hamilton.html" target="_blank">
+	<center>
+		<img src="graphes/graph_hamilton.png" width="100%">
+	</center>
+</a>
+
+---
+**A vous d'imaginer...**
+<center>
+	<img src="images/Sketchboard.png" width="100%">
+</center>
+
+.footnote[.small[https://sketchboard.me/]]
+
+---
+
+class: splash middle center
+
+.quote[.big[La cohérence doit  
+être garantie  
+par le processus.]]
 
 ---
 class: inverse middle center
 # Cypher
-Celui qui préférait la matrice.
+Celui qui préférait la matrice...
+
+
+---
+# Cypher
+
+* Langage de requêtage et manipulation de graphe,
+* Inventé par Neo4j,
+* Relations exprimées sous forme de _patterns_.
+
+## OpenCypher
+
+* http://www.opencypher.org/
+* Ouverture de Cypher (Apache 2) 
+* devenir le SQL des bases 
+
+## Utilisable
+* En ligne de commande
+* Dans la console web
+* Comme template en programmation
 
 
 ---
 name: cypher_101
 
 # Cypher
-## Pattern Ascii Art
+## Pattern 101
+
 
 ---
 template: cypher_101
 
-.center[**Noeud <=> parentèses**]
+
+Ces patterns sont écrits dans l'esprit _Ascii-Art_
+
+--
+
+```
+  ______________         ________         ________________
+ /              \       |        |       /                \
+|| name: Roméo  ||------| : LOVE |----> || name: Juliette ||
+ \______________/       |________|       \________________/
+```
+
+--
+
+## Exemple de Pattern Cypher
+
+.outline-code-big[
+```
+({name: "Roméo"})-[:LOVE]->({name: "Juliette"})
+```
+]
+
+---
+template: cypher_101
+
+.center[**Noeud &hArr; parentèses**]
 
 <center>
   <img src="images/node_detail_0.svg" height="50%">
@@ -593,7 +714,7 @@ template: cypher_101
 ---
 template: cypher_101
 
-.center[**Relation orientée <=> crochet et flèches**]
+.center[**Relation orientée &hArr; crochet et flèches**]
 
 <center>
   <img src="images/graphs-different_nodes.svg" height="30%">
@@ -605,7 +726,7 @@ template: cypher_101
 ---
 template: cypher_101
 
-.center[**Relation non orientée <=> crochet et tirés**]
+.center[**Relation non orientée &hArr; crochet et tirés**]
 
 <center>
   <img src="images/graphs-non-orienté.svg" height="30%">
@@ -617,7 +738,7 @@ template: cypher_101
 ---
 template: cypher_101
 
-.center[**Relation anonyme orientée <=> tirés + flèche**]
+.center[**Relation anonyme orientée &hArr; tirés + flèche**]
 
 <center>
   <img src="images/graphs-sans-relation-o.svg" height="30%">
@@ -628,7 +749,7 @@ template: cypher_101
 ---
 template: cypher_101
 
-.center[**Relation anonyme non orientée <=> tirés**]
+.center[**Relation anonyme non orientée &hArr; tirés**]
 
 <center>
   <img src="images/graphs-sans-relation-no.svg" height="30%">
@@ -640,7 +761,7 @@ template: cypher_101
 ---
 template: cypher_101
 
-.center[**Propriétés <=> accolades**]
+.center[**Propriétés &hArr; accolades**]
 
 <center>
   <img src="images/properties.svg" height="50%">
@@ -651,7 +772,7 @@ template: cypher_101
 ---
 template: cypher_101
 
-.center[**Label,Type <=> deux points + nom**]
+.center[**Label,Type &hArr; deux points + nom**]
 
 <center>
   <img src="images/graphs-label.svg" height="50%">
@@ -665,7 +786,7 @@ template: cypher_101
 
 .center[**variable**]
 
-.center[.mega-huge[.quote[(name:Label {key:value})]]]
+.center[.mega-huge[.quote[(**name**:Label {key:value})]]]
 
 --
 
@@ -673,41 +794,45 @@ template: cypher_101
 
 .center[.mega-huge[.quote[(name {key:value})]]]
 .center[.mega-huge[.quote[(name)]]]
-.center[.mega-huge[.quote[(:Label {key:value})]]]
+
+---
+template: cypher_101
+
+https://neo4j.com/docs/developer-manual/current/cypher/syntax/patterns/
 
 ---
 template: cypher_101
 
 ## Exemples de pattern
-.center[
-```cypher
+.center[.outline-code-big[
+```python
 (a:Author)-[r:WRITE]->(b:Book) 
 ```
-]
+]]
 
 --
 
-.center[
-```cypher
+.center[.outline-code-big[
+```python
 (a:Author)-->(b:Book) 
 ```
-]
+]]
 
 --
 
-.center[
-```cypher
+.center[.outline-code-qbig[
+```python
 (a:Author)-[:WRITE]->(b:Book)<-[:READ]-(r:Reader)
 ```
-]
+]]
 
 --
 
-.center[
-```cypher
+.center[.outline-code-big[
+```python
 (a:Author)-->(b:Book)<--(r:Reader)
 ```
-]
+]]
 
 ---
 name: cypher_clause
@@ -716,18 +841,14 @@ name: cypher_clause
 ---
 template: cypher_clause
 
-## Principes généraux
-
-Elles s'expriment toujours avec un pattern en ascii-art
-
 ## Types
 * Lecture
 * Projection
 * Création /Modification
 
 ## Nombreuses clauses et sous clauses
+* Nous n'allons pas toutes les parcourir :)
 * https://neo4j.com/docs/developer-manual/current/cypher/clauses/
-
 
 
 ---
@@ -737,56 +858,279 @@ name: cypher_match
 ---
 template: cypher_match
 
-* La plus utilisée
+La plus utilisée
 
-```cypher
+```python
 MATCH <pattern> RETURN <valeurs> 
 ```
 
 --
 
-Tous les noeuds
-```cypher
+Retourne tous les noeuds de la base (_déconseillé sur les grosses bases_)
+```python
 MATCH (n) RETURN n
 ```
 
 --
 
-Tous les noeuds dont le nom est _John_
-```cypher
-MATCH (n {name: 'John'}) RETURN n
+Tous les noeuds dans la limite de 100
+```python
+MATCH (n) RETURN n LIMIT 100
 ```
 
 --
 
+Tous les noeuds dont le nom est _John_
+```python
+MATCH (n {name: 'John'}) RETURN n
+```
+
+--
+ 
 Tous les noeuds que tous les _John_ connaissent
-```cypher
+```python
 MATCH (n {name: 'John'})-[:KNOW]->(m) RETURN m
 ```
 
 ---
 template: cypher_match
 
-* Tous les titres de livres de tous les auteurs 
- * dont le nom est 'Hamilton', 
- * le prénom 'Peter'
+## WHERE
 
-```cypher
+* Tous les titres de livres de tous les auteurs dont 
+ * le nom est _'Hamilton'_, 
+ * le prénom _"Peter"_.
+
+--
+
+**Sans WHERE**
+```python
 MATCH 
-(a:Author {lastname: 'Hamilton', firstname: 'Peter'}-[:WRITE]->(b:Book)) 
+(a:Author {lastname: "Hamilton", firstname: "Peter"})-[:WRITE]->(b:Book)
 RETURN b.title 
 ```
+
+--
+
+**Avec WHERE**
+```python
+MATCH 
+(a:Author)-[:WRITE]->(b:Book)
+WHERE a.lastname: "Hamilton" AND a.firstname = "Peter"
+RETURN b.title 
+```
+
+--
+
+.huge[.center[.quote[Les deux expressions sont équivalentes]]]
+
+---
+name: cypher_create
+# CREATE
+
+--
+template: cypher_create
+
+* Un noeud
+
+```python
+CREATE (a:Author {lastname: "Hamilton", firstname: "Peter"})
+RETURN a
+```
+
+--
+
+* Deux noeuds
+
+```python
+CREATE 
+(a:Author {lastname: "Hamilton", firstname: "Peter"}),
+(b:Book {title: "Pandora's Star"})
+RETURN a,b
+```
+
+--
+
+* Une relation
+
+```python
+CREATE 
+(a:Author {lastname: "Hamilton", firstname: "Peter"}),
+(b:Book {title: "Pandora's Star"}),
+(a)-[r:WRITE]->(b)
+RETURN a,b,r
+```
+
+
+---
+template: cypher_create
+
+## Combinaison de MATCH et CREATE
+
+
+```python
+MATCH 
+(a:Author {lastname: "Hamilton", firstname: "Peter"}),  
+(b:Book {title: "Pandora's Star"})
+
+CREATE (a)-[r:WRITE]->(b)
+
+RETURN a,b,r
+```
+
+
+---
+name: cypher_modificate
+# SET /REMOVE
+
+Les clauses `SET` et `REMOVE` s'utilisent toujours avec une variable
+
+---
+template:  cypher_modificate
+
+* Ajout de la date de naissance
+
+```python
+MATCH 
+(a:Author {lastname: "Hamilton", firstname: "Peter"}) 
+SET a.birthDate = date('1960-03-02')
+```
+
+---
+template:  cypher_modificate
+
+* Suppression de la date de naissance
+
+```python
+MATCH 
+(a:Author {lastname: "Hamilton", firstname: "Peter"}) 
+REMOVE a.birthDate
+```
+
+---
+template:  cypher_modificate
+
+## Utilisation d'un dictionnaire
+
+--
+
+* Ecrasement des propriétés avec `=`
+```python
+MATCH 
+(a:Author {lastname: "Hamilton", firstname: "Peter"}) 
+SET a = { lastname: "Foo", firstname: "BAR"}
+```
+
+--
+
+* Complétions des propriétés avec `+=`
+```python
+MATCH 
+(a:Author {lastname: "Hamilton", firstname: "Peter"}) 
+SET a += { birthDate : date('1960-03-02'),  nationality: "british"}
+```
+
+---
+# Cypher documentation
+
+## Référence
+
+https://neo4j.com/docs/cypher-manual/current/introduction/
+
+## Refcard
+https://neo4j.com/docs/pdf/cypher-refcard-3.4.pdf
+
+<center>
+  <img src="images/cypher-refcard.png" width="80%">
+</center>
+
+---
+class: inverse middle center
+# Play time
+
+---
+# Un service Neo4j c'est 
+
+* Une base (et *une seule* par service)
+* Une API Rest et une URI **bolt://**
+* Une console web (neo4j browser)
+
+<center>
+  <img src="images/neo4j-browser.png" width="100%">
+</center>
+
+---
+
+<center>
+  <img src="images/neo4j-browser-02.png" width="100%">
+</center>
+
+---
+
+<center>
+  <img src="images/neo4j-browser-03.png" width="100%">
+</center>
+
+---
+
+<center>
+  <img src="images/neo4j-browser-04.png" width="100%">
+</center>
+
+---
+name: how_to_play
+# Comment jouer
 
 
 
 ---
-# Cypher
+template: how_to_play
 
-## Langage déclaratif
-* Décrire ce que qui est souhaité et non comment l'obtenir
+## Installation sur une machine
+* https://neo4j.com/docs/operations-manual/current/installation/
+* Linux, Mac OS, Windows
+* OpenJDK 8
 
-## Pattern matching 
-* Cyph 
+---
+template: how_to_play
+
+## Docker
+
+Le plus simple pour jouer à domicile
+
+```bash
+$ MY_BASE="$HOME/neo4j/evaluation"
+
+docker run --rm \
+--publish=7474:7474 \
+--publish=7687:7687  \
+--env=NEO4J_AUTH=none  \
+--volume=$MY_BASE:/data  neo4j 
+```
+
+---
+template: how_to_play
+
+## Sandbox
+* Machines virtuelles d'une durée limitée (3 jours)
+* Plusieurs use cases 
+
+<center>
+  <img src="images/sandbox_01.png" width="80%">
+</center>
+
+---
+# Architecture de Neo4j
+
+## Native Graph
+
+
+## Indexation
+* Indexes _Lucène_
+
+---
+# LES OGM
+
 
 
 ---
