@@ -346,6 +346,7 @@ Series C rounds and onwards are for later stage and more established companies. 
 
 * Développé en open-source (https://github.com/neo4j/neo4j)
 * Moteur écrit en Java
+* Extensible
 
 ## Double licence
 
@@ -1134,13 +1135,104 @@ template: how_to_play
 </center>
 
 ---
+class: inverse middle center
+# DEMOs
+
+---
+class: inverse middle center
+# Architecture de Neo4j
+Jettons un coup d'oeil sous le capot
+
+
+---
+name: architecture
 # Architecture de Neo4j
 
-## Native Graph
 
+---
+template: architecture
+
+<center>
+  <img src="https://s3.amazonaws.com/dev.assets.neo4j.com/wp-content/uploads/20160712093043/neo4j-native-graph-databse-architecture.png" width="80%">
+</center>
+
+---
+template: architecture
+
+## Native Graph
+* Moteurs et format de stockage _dédié_
+
+### Index-free adjacency
+* Chaque noeud est un micro-index local de ses proches voisins
+* Pas d'index **partagé** ou **global**
+* Le coût est proportionel au graphe parcouru, pas au volume total de données.
+
+
+## All Is Linked List
+* Tout est _liste chaînée_
+* Tous les enregistrements sont de tailles fixes
+* Parcourir un objet consiste à
+ * calculer l'identifiant d'une struture
+ * parcourir la liste de valeurs
+
+
+---
+template: architecture
+
+## Un noeud
+* id noeud
+* id de sa 1ère relation
+* id de sa 1ère propriété
+
+```
+[ in_use_flag ][ ID_first_relation][ID_first_property]
+```
+## Relation
+
+```
+[in_use][1st_node][2nd_node][1st_node_prev_relation][1st_node_next_relation][2nd_node_prev_relation][2nd_node_next_relation]
+```
+
+**calcul de position**
+
+```
+position(id,nature) =id * NodeBlockSize(nature)
+```
+
+<center>
+	<img src="images/Graph_Databases_2e_Neo4j pdf.png">
+</center>
+
+
+???
+A database engine that utilizes index-free adjacency is one in which each node main‐
+tains  direct  references  to  its  adjacent  nodes.  Each  node,  therefore,  acts  as  a  micro-
+index  of  other  nearby  nodes,  which  is  much  cheaper  than  using  global  indexes.  It
+means that query times are independent of the total size of the graph, and are instead
+simply proportional to the amount of the gra
+
+O(log(n)) vs O(1)
+
+---
+
+<center>
+	<img src="https://image.slidesharecdn.com/neo4jinternals-120521030150-phpapp02/95/an-overview-of-neo4j-internals-12-1024.jpg?cb=1337569396" width="100%">
+</center>
+
+---
+template: architecture
+
+## All Is Cached
+
+---
+template: architecture
 
 ## Indexation
 * Indexes _Lucène_
+
+---
+class: inverse middle center
+# Côté développement
 
 ---
 # LES OGM
@@ -1179,12 +1271,50 @@ class: inverse middle center
 
 
 ---
+class: inverse middle center
+# Ce qui fâche
+dans notre contexte ESR
+
+---
+class: splash middle center
+
+# La version community est-elle insuffisante ?
+
+TLDR; **Non**
+
+---
+# La version community est-elle insuffisante ?
+## Des fonctionnalités critiques manquantes
+
+Comparatif (https://neo4j.com/subscriptions/)
+
+* User Role-based security 
+* Multi-Clustering (partition of clusters)
+* Auto reuse of deleted space
+* Property existence constraints
+* Cypher query tracing, monitoring and metrics
+* Node Key schema constraints
+
+---
+# La version community est-elle insuffisante ?
+
+## Des rapports troubles avec la communauté OpenSource
+* Retrait des versions _Enterprise_ depuis la [version 3.3.0](https://blog.igovsol.com/2017/11/14/Neo4j-330-is-out-but-where-are-the-open-source-enterprise-binaries.html) 
+
+## Une politique tarifaire obscure
+* Uniquement sur rendez-vous commercial
+* Impossible à budgétiser dans notre contexte
+
+.big[.quote[Possibilité de bénéficier de la licence EDU en cours d'étude]]
+
+---
 # Contrôle Accès
 C'est le gros point faible de la base neo4j. des contrôles moins sommairs ne sont disponibles qu'en version Enterprise.
 
 ---
-# version libre
+# Les solutions libres 
 
+## Open Native Graph DB
 https://www.graphfoundation.org/projects/ongdb/
 
 Un fork de Neo4j avec les parties enterprise
@@ -1196,9 +1326,23 @@ Pour tester
  --publish=7474:7474 \
  --publish=7687:7687  \
  --volume=$HOME/neo4j/data:/data \
- --env=NEO4J_AUTH=none  \  
+ --env=NEO4J_AUTH=none  \
  graphfoundation/ongdb-enterprise:3.4
 ```
+
+## Graph Stack io
+https://graphstack.io/
+
+```bash
+docker run \
+       --publish=7474:7474 \
+       --publish=7687:7687 \
+       --volume=$HOME/neo4j/data:/data \
+       --env=NEO4J_AUTH=none  \
+       graphstack/neo4j-enterprise:3.4
+```
+
+---
 
 Des problèmes de licence
 

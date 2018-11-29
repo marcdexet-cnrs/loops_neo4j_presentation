@@ -350,6 +350,7 @@ internals:
 * https://www.slideshare.net/anikishaev/neo4j-after-1-year-in-production
 * https://hackernoon.com/life-after-1-year-of-using-neo4j-4eca5ce95bf5
 
+* https://image.slidesharecdn.com/neo4jinternals-120521030150-phpapp02/95/an-overview-of-neo4j-internals-12-728.jpg?cb=1337569396
 
 Tuto
 * https://stph.scenari-community.org/contribs/nos/Neo4j2/co/Neo4j-2.html
