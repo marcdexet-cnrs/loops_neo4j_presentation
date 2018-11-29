@@ -100,7 +100,7 @@ Un problème vieux comme l'humanité
 ---
 # Base graphe, un vieux concept
 
-## Premières bases sont des graphes
+## Les premières bases sont des graphes
 * CODASYL (Conference on Data Systems Languages)
 * _COBOL_.
 * Navigation par pointeur vers les enregistrements liés.
@@ -384,6 +384,20 @@ La version Entreprise peut-être [utilisée pour des produits open-source](https
 ```python
 CREATE (p:Person {firstName: "name"}) RETURN p
 ```
+
+
+---
+# Neo4j, la communauté
+
+## Stackoverflow
+* tag `neo4j` ~ 17 000 articles 
+
+## Community.neo4j.com
+* https://community.neo4j.com
+
+???
+numpy ~ 60 000
+pandas ~ 88 000
 
 ---
 class: inverse middle center
@@ -1164,3 +1178,39 @@ class: inverse middle center
 * Neo4j utilise assez habilement des indexes et de  l'adjacence. Les indexes pour localiser les points de départs
 
 * https://neo4j.com/blog/graph-search-algorithm-basics/
+
+
+---
+# Contrôle Accès
+C'est le gros point faible de la base neo4j. des contrôles moins sommairs ne sont disponibles qu'en version Enterprise.
+
+---
+# version libre
+
+https://www.graphfoundation.org/projects/ongdb/
+
+Un fork de Neo4j avec les parties enterprise
+
+Pour tester
+
+```bash
+ docker run        \
+ --publish=7474:7474 \
+ --publish=7687:7687  \
+ --volume=$HOME/neo4j/data:/data \
+ --env=NEO4J_AUTH=none  \  
+ graphfoundation/ongdb-enterprise:3.4
+```
+
+Des problèmes de licence
+
+https://twitter.com/bradnussbaum/status/1064527006933676034
+
+
+---
+# machine learning
+
+---
+# Cosmic Web
+
+* http://cosmicweb.kimalbrecht.com/viz/#1
