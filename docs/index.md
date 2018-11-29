@@ -1148,11 +1148,9 @@ template: how_to_play
 
 
 ---
-# OpenCypher
+# Extensions APOC
 
-2015
-
-http://www.opencypher.org/
+https://neo4j-contrib.github.io/neo4j-apoc-procedures/
 
 
 class: inverse middle center
