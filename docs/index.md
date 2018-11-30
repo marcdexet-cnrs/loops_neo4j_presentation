@@ -70,6 +70,14 @@ Quand tous les noeuds sont reliés entre eux, le graphe est dit **complet**
 </a>
 
 ---
+
+<center>
+	<img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Social_Network_Analysis_Visualization.png" width="100%">
+</center>
+
+.footnote[.small[Martin Grandjean]]
+
+---
 class: inverse middle center
 # Pourquoi une base graphe ?
 Un peu d'histoire
@@ -156,10 +164,11 @@ name: graph_renew_sql
 template: graph_renew_sql
 
 ## Les limites de l'approche relationelle
-* Peu adapté à des domaines très évolutifs
- * Processus lourd avec nombreux rôles
 * ACID => Problèmes de performance complexes dans certains contextes
- * bases distribuées, sharding
+ * bases distribuées, traitements répartis, sharding...
+* Peu adapté à des domaines très évolutifs
+ * Processus lourd 
+ * Nombreux rôles
 
 --
 
@@ -683,7 +692,7 @@ Celui qui préférait la matrice...
 
 * http://www.opencypher.org/
 * Ouverture de Cypher (Apache 2) 
-* devenir le SQL des bases 
+* Devenir le SQL des bases graphes 
 
 ## Utilisable
 * En ligne de commande
@@ -1476,6 +1485,9 @@ https://fr.slideshare.net/neo4j/volvo-cars-build-a-car-with-neo4j
 ---
 class: inverse middle center
 # Annexes et références
+
+# Bases graphes
+* https://hal.inria.fr/hal-01444505/document
 
 ## Index-free adjacency
 ### Pro
