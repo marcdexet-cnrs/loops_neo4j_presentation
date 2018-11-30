@@ -23,9 +23,9 @@ Un _graphe_ est une structure composée de
 Les _arêtes_ relient les _noeuds_.
 
 <a href="graphes/graph_01.html" target="_blank">
-	<center>
-		<img src="graphes/graph_01.png" width="800px">
-	</center>
+    <center>
+        <img src="graphes/graph_01.png" width="800px">
+    </center>
 </a>
 
 ---
@@ -39,9 +39,9 @@ Un _graphe_ est une structure composée de
 Les _arêtes_ relient les _noeuds_ et peuvent être **orientées**
 
 <a href="graphes/graph_02.html" target="_blank">
-	<center>
-		<img src="graphes/graph_02.png" width="800px">
-	</center>
+    <center>
+        <img src="graphes/graph_02.png" width="800px">
+    </center>
 </a>
 
 ---
@@ -55,18 +55,18 @@ Un _graphe_ est une structure composée de
 Quand tous les noeuds sont reliés entre eux, le graphe est dit **complet**
 
 <a href="graphes/graph_03.html" target="_blank">
-	<center>
-		<img src="graphes/graph_03.png" width="800px">
-	</center>
+    <center>
+        <img src="graphes/graph_03.png" width="800px">
+    </center>
 </a>
 
 
 ---
 
 <a href="graphes/graph_complexe.html" target="_blank">
-	<center>
-		<img src="graphes/graph_complexe.png" width="800px">
-	</center>
+    <center>
+        <img src="graphes/graph_complexe.png" width="800px">
+    </center>
 </a>
 
 ---
@@ -86,14 +86,14 @@ Un problème vieux comme l'humanité
 .left-column[
 .center[*Bandes magnétiques*]
 <center>
-	<img src="images/bandes_magnetiques.png" width="300px">
+    <img src="images/bandes_magnetiques.png" width="300px">
 </center>
 ]
 
 .right-column[
 .center[*Disques durs*]
 <center>
-	<img src="images/ibm350.jpg" width="300px">
+    <img src="images/ibm350.jpg" width="300px">
 </center>
 ]
 
@@ -108,14 +108,14 @@ Un problème vieux comme l'humanité
 .left-column[
 .center[*Modèle hiérarchique*]
 <center>
-	<img src="images/hierachique.png" width="200px">
+    <img src="images/hierachique.png" width="200px">
 </center>
 ]
 
 .right-column[
 .center[*Modèle en réseau*]
 <center>
-	<img src="images/reseau.png" width="200px">
+    <img src="images/reseau.png" width="200px">
 </center>
 ]
 
@@ -145,7 +145,7 @@ _Oracle, Postgres, MySQL, MariaDB, SQLServer, ..._
 ## Approche par table de données et jointure par clef.
 * Orientée _ligne_
 <center>
-	<img src="images/SGBD_RELATIONNEL.png" width="300px">
+    <img src="images/SGBD_RELATIONNEL.png" width="300px">
 </center>
 
 ---
@@ -207,7 +207,7 @@ Légitimation par le théorème CAP ([Eric A. Brewer](https://en.wikipedia.org/w
 * Un SGDB ne pourra jamais avoir que 2 propriétés sur 3.
 
 <center>
-	<img src="images/cap_theorem.png" width="500px">
+    <img src="images/cap_theorem.png" width="500px">
 </center>
 
 .footnote[.small[[Maitrisez le théorème de CAP](https://openclassrooms.com/fr/courses/4462426-maitrisez-les-bases-de-donnees-nosql/4462471-maitrisez-le-theoreme-de-cap)]]
@@ -520,7 +520,7 @@ Avec
 Absence de **schéma dans la base** qui décrit ce qui doit être.
 
 <center>
-	<img src="images/no_schema.svg">
+    <img src="images/no_schema.svg">
 </center>
 
 --
@@ -572,9 +572,9 @@ Un `Path` est un ensemble de _noeuds_ et de _relations_ reliant
 - et un noeud d'arrivé
 
 <a href="graphes/graph_path.html" target="_blank">
-	<center>
-		<img src="graphes/graph_path.png" width="800px">
-	</center>
+    <center>
+        <img src="graphes/graph_path.png" width="800px">
+    </center>
 </a>
 
 ---
@@ -601,14 +601,14 @@ class: inverse middle center
 ### Avec une base relationnelle
 _Modèle UML_
 <center>
-	<img src="images/graphs-uml-to-db.svg">
+    <img src="images/graphs-uml-to-db.svg">
 </center>
 
 --
 
 _Modèle de données_
 <center>
-	<img src="images/graphs-uml-to-db2.svg">
+    <img src="images/graphs-uml-to-db2.svg">
 </center>
 
 
@@ -619,14 +619,14 @@ _Modèle de données_
 ### Avec une base graphe
 _Modèle UML_
 <center>
-	<img src="images/graphs-uml-to-db.svg">
+    <img src="images/graphs-uml-to-db.svg">
 </center>
 
 --
 
 _Modèle de données_
 <center>
-	<img src="images/graphs-uml-to-db3.svg">
+    <img src="images/graphs-uml-to-db3.svg">
 </center>
 
 --
@@ -636,15 +636,15 @@ Et c'est tout...
 ---
 
 <a href="graphes/graph_hamilton.html" target="_blank">
-	<center>
-		<img src="graphes/graph_hamilton.png" width="100%">
-	</center>
+    <center>
+        <img src="graphes/graph_hamilton.png" width="100%">
+    </center>
 </a>
 
 ---
 **A vous d'imaginer...**
 <center>
-	<img src="images/Sketchboard.png" width="100%">
+    <img src="images/Sketchboard.png" width="100%">
 </center>
 
 .footnote[.small[https://sketchboard.me/]]
@@ -1179,6 +1179,53 @@ template: architecture
 ---
 template: architecture
 
+
+Chaque enregistrement comporte des ID permettant de calculer la position du début de la liste suivante
+
+
+## noeud
+
+```cpp
+struct node_record { 
+  bool in_use;          // noeud utilisé
+
+  int first_relation;   // id première relation de la liste des relations
+  int first_property;   // id première propriété de la liste des propriétés
+}
+```
+## Relation
+
+```cpp
+struct relationship_record {
+    bool in_use;        // noeud utilisé
+
+    int first_node;     // id du premier noeud de la relation (x)->( )
+    int second_node;    // id du second noeud de la relation  ( )<-( ) 
+
+    int relation_type;  // id du type de relation
+
+    int first_node_prev_relation;
+    int first_node_next_relation;
+
+    int second_node_prev_relation;
+    int second_node_next_relation;
+}
+```
+
+**calcul de position**
+
+```
+position(id,nature) =id * node_block_size(nature)
+```
+
+
+---
+template: architecture
+
+
+Chaque enregistrement comporte des ID permettant de calculer la position du début de la liste suivante
+
+
 ## Un noeud
 * id noeud
 * id de sa 1ère relation
@@ -1190,7 +1237,7 @@ template: architecture
 ## Relation
 
 ```
-[in_use][1st_node][2nd_node][1st_node_prev_relation][1st_node_next_relation][2nd_node_prev_relation][2nd_node_next_relation]
+[in_use][1st_node][2nd_node][relation_type][1st_node_prev_relation][1st_node_next_relation][2nd_node_prev_relation][2nd_node_next_relation]
 ```
 
 **calcul de position**
@@ -1200,7 +1247,7 @@ position(id,nature) =id * NodeBlockSize(nature)
 ```
 
 <center>
-	<img src="images/Graph_Databases_2e_Neo4j pdf.png">
+    <img src="images/Graph_Databases_2e_Neo4j pdf.png">
 </center>
 
 
@@ -1216,8 +1263,9 @@ O(log(n)) vs O(1)
 ---
 
 <center>
-	<img src="https://image.slidesharecdn.com/neo4jinternals-120521030150-phpapp02/95/an-overview-of-neo4j-internals-12-1024.jpg?cb=1337569396" width="100%">
+    <img src="https://image.slidesharecdn.com/neo4jinternals-120521030150-phpapp02/95/an-overview-of-neo4j-internals-12-1024.jpg?cb=1337569396" width="100%">
 </center>
+
 
 ---
 template: architecture
@@ -1356,3 +1404,7 @@ https://twitter.com/bradnussbaum/status/1064527006933676034
 # Cosmic Web
 
 * http://cosmicweb.kimalbrecht.com/viz/#1
+
+---
+# Cas volovo
+https://fr.slideshare.net/neo4j/volvo-cars-build-a-car-with-neo4j
