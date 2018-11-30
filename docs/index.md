@@ -257,6 +257,15 @@ Une base réseau a une notion de _nested_ avec une relation de _owner-member_
 
 
 ---
+# Les bases graphes, pour quoi faire ?
+
+* processing highly connected data,
+* be flexible in usage data models behind graphs used,
+* exceptional performances for local reads, by traversing the graph.
+
+
+
+---
 # Les principaux acteurs
 
 ## Les bases graphes sont toujours très minoritaires...
@@ -1160,12 +1169,20 @@ template: architecture
 template: architecture
 
 ## Native Graph
-* Moteurs et format de stockage _dédié_
+* Moteurs et format de stockage _dédiés_
 
 ### Index-free adjacency
-* Chaque noeud est un micro-index local de ses proches voisins
 * Pas d'index **partagé** ou **global**
+* Chaque noeud est un micro-index local de ses voisins
+* Il suffit de suivre les liens (_relations_)
 * Le coût est proportionel au graphe parcouru, pas au volume total de données.
+  * La recherche par index &rarr; _O_( ln(n) )
+  * Le saut à une position &rarr; O(1)
+
+.footnote[[Analyse de la complexité des algorithmes](https://fr.wikipedia.org/wiki/Analyse_de_la_complexit%C3%A9_des_algorithmes)]  
+
+---
+template: architecture
 
 
 ## All Is Linked List
@@ -1174,6 +1191,7 @@ template: architecture
 * Parcourir un objet consiste à
  * calculer l'identifiant d'une struture
  * parcourir la liste de valeurs
+* Le parcours est réversible
 
 
 ---
@@ -1193,6 +1211,12 @@ struct node_record {
   int first_property;   // id première propriété de la liste des propriétés
 }
 ```
+---
+template: architecture
+
+
+Chaque enregistrement comporte des ID permettant de calculer la position du début de la liste suivante
+
 ## Relation
 
 ```cpp
@@ -1218,33 +1242,66 @@ struct relationship_record {
 position(id,nature) =id * node_block_size(nature)
 ```
 
+---
+template: architecture
+
+# Exemple
+<center>
+	<img src="images/native_graph-Page-1 (0).svg" width="90%">
+</center>
 
 ---
 template: architecture
 
+# Exemple
+<center>
+	<img src="images/native_graph-Page-1 (1).svg" width="90%">
+</center>
 
-Chaque enregistrement comporte des ID permettant de calculer la position du début de la liste suivante
+---
+template: architecture
+
+# Exemple
+<center>
+	<img src="images/native_graph-Page-1 (2).svg" width="90%">
+</center>
+
+---
+template: architecture
+
+# Exemple
+<center>
+	<img src="images/native_graph-Page-1 (3).svg" width="90%">
+</center>
+
+---
+template: architecture
+
+# Exemple
+<center>
+	<img src="images/native_graph-Page-1 (4).svg" width="90%">
+</center>
 
 
-## Un noeud
-* id noeud
-* id de sa 1ère relation
-* id de sa 1ère propriété
+---
+template: architecture
 
-```
-[ in_use_flag ][ ID_first_relation][ID_first_property]
-```
-## Relation
+# Exemple
+<center>
+	<img src="images/native_graph-Page-1 (5).svg" width="90%">
+</center>
 
-```
-[in_use][1st_node][2nd_node][relation_type][1st_node_prev_relation][1st_node_next_relation][2nd_node_prev_relation][2nd_node_next_relation]
-```
+---
+template: architecture
 
-**calcul de position**
+# Exemple
+<center>
+	<img src="images/native_graph-Page-1 (6).svg" width="90%">
+</center>
 
-```
-position(id,nature) =id * NodeBlockSize(nature)
-```
+
+---
+template: architecture
 
 <center>
     <img src="images/Graph_Databases_2e_Neo4j pdf.png">
@@ -1408,3 +1465,21 @@ https://twitter.com/bradnussbaum/status/1064527006933676034
 ---
 # Cas volovo
 https://fr.slideshare.net/neo4j/volvo-cars-build-a-car-with-neo4j
+
+---
+# Capacités 
+
+* 34 milliards de noeuds
+* 34 milliards de relations
+
+
+---
+class: inverse middle center
+# Annexes et références
+
+## Index-free adjacency
+### Pro
+* https://neo4j.com/blog/native-vs-non-native-graph-technology/
+
+### Cons
+* https://www.arangodb.com/2016/04/index-free-adjacency-hybrid-indexes-graph-databases/
