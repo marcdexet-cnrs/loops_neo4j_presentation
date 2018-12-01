@@ -24,9 +24,11 @@ h1, h2, h3 {
   font-size: 25px;
 } 
 
+/*
 .remark-slide-number {
-  visibility: hidden
+ visibility: hidden
 }     
+*/
 
 code {
   border-radius: 5px;
@@ -42,6 +44,9 @@ code {
 .remark-code-line-highlighted .hljs-comment {
     background-color: aliceblue;
     color: black;
+}
+.outline-small > pre .remark-code {
+  font-size: 8px;
 }
 .outline-code > pre .remark-code {
   font-size: 10px;
@@ -96,7 +101,13 @@ code {
   bottom: 3em;
   right: 3em;
 }
-
+.headnote {
+  font-size: 80%;
+  font-weight: 300;
+  position: absolute;
+  top: 3em;
+  right: 3em;
+}
 .small {
   font-size: 90%;
 }
@@ -108,6 +119,9 @@ code {
 }
 .huge {
   font-size: 180%;
+}
+.mega-huge {
+  font-size: 200%;
 }
 .red {color:red;}
 .green {color:green;}
