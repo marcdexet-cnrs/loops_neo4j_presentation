@@ -108,10 +108,9 @@ Un problème vieux comme l'humanité
 ---
 # Base graphe, un vieux concept
 
-## Les premières bases sont des graphes
+## Les premières bases sont des graphes ('70)
 * CODASYL (Conference on Data Systems Languages)
-* _COBOL_.
-* Navigation par pointeur vers les enregistrements liés.
+* Utilisé en _COBOL_.
 
 .left-column[
 .center[*Modèle hiérarchique*]
@@ -128,9 +127,9 @@ Un problème vieux comme l'humanité
 ]
 
 .reset-column[
-* Accès aux données en mode _navigationnel_   
-en mentionnant les relations _explicitement_   
-en passant d'un _record_ à un autre.
+* Accès aux données en mode **_navigationnel_**   
+en mentionnant les relations **_explicitement_**   
+pour passer d'un _record_ à un autre.
 ]
 
 .footnote[.small[ [Cours "bases de données réseau et hiérarchiques" sur sgbd.developpez.com](https://sgbd.developpez.com/tutoriels/cours-complet-bases-de-donnees/?page=bases-de-donnees-reseaux-et-hierarchiques)]]
@@ -142,19 +141,35 @@ Image http://www.cs.aucegypt.edu/~csci253/DBConcepts%20v2.htm
 ---
 # L'hégémonie des Bases de Données Relationnelles
 
-## Un standard de fait
-* **SQL** langage de manipulation abstrait normé 
-* **ACID** (Atomicité, Cohérence, Isolation, Durabilité)
-* Plusieurs rôles : DBA, développeurs
-
-_Oracle, Postgres, MySQL, MariaDB, SQLServer, ..._
-
 
 ## Approche par table de données et jointure par clef.
 * Orientée _ligne_
 <center>
     <img src="images/SGBD_RELATIONNEL.png" width="300px">
 </center>
+
+## Standard de fait
+* Langage de manipulation "standardisé" SQL
+
+## Nombreux éditeurs et produits
+* _Oracle, Postgres, MySQL, MariaDB, SQLServer, ..._
+
+---
+# L'hégémonie des Bases de Données Relationnelles
+
+## Propriétés ACID
+ * **A**tomicity &rarr; transaction
+ * **C**onsistency &rarr; intégrité d'une transaction à une autre
+ * **I**solation &rarr; pas d'interférence entre transactions
+ * **D**urability &rarr; la pérénité est assurée, même en cas de défaillance
+
+## Une intégrité garantie
+
+* Les règles sont contenues dans la base.
+* Schéma, contraintes, gestion des cascades
+
+## Des qualités exigeantes mais rassurantes
+
 
 ---
 name: graph_renew_sql
@@ -164,11 +179,25 @@ name: graph_renew_sql
 template: graph_renew_sql
 
 ## Les limites de l'approche relationelle
+
+La fin du "One-Size-Fits-All" 
+
+### Trop d'ACIDité nuit
 * ACID => Problèmes de performance complexes dans certains contextes
  * bases distribuées, traitements répartis, sharding...
+
+--
+
+## Processing, le mélange des genres
+* Nécessité de mettre du traitement dans la base
+
+--
+
+### Trop rigide
 * Peu adapté à des domaines très évolutifs
- * Processus lourd 
- * Nombreux rôles
+ * Processus lourd
+ * Evolutions de schéma parfois casse-tête
+ * Guerre entre DBA (_Data Base Administrator_) et développeurs
 
 --
 
@@ -201,11 +230,11 @@ template: graph_renew_sql
 
 ### Propriétés **souvent** (mais pas toujours) associées :
 * Open source
-* API first (REST)
-* Grande influence du langage (ERLANG, javascript, java, C/C++)
-* Distribuée
+* API first
 * Simples à installer (...)
-* Autonomie du développeur
+* Transfert du contrôle de cohérence vers l'application
+
+.center[.big[.quote[La base de données n'est plus la garante de l'intégrité]]]
 
 ---
 template: graph_renew_sql
@@ -220,9 +249,9 @@ Légitimation par le théorème CAP ([Eric A. Brewer](https://en.wikipedia.org/w
 </center>
 
 .footnote[.small[[Maitrisez le théorème de CAP](https://openclassrooms.com/fr/courses/4462426-maitrisez-les-bases-de-donnees-nosql/4462471-maitrisez-le-theoreme-de-cap)]]
+
 ---
 # Base graphe, le renouveau NoSQL
-(discutable)
 
 ## Passage de ACID à BASE
 * **ACID**
@@ -266,12 +295,38 @@ Une base réseau a une notion de _nested_ avec une relation de _owner-member_
 
 
 ---
-# Les bases graphes, pour quoi faire ?
+# Les bases graphes, quels usages ?
 
-* processing highly connected data,
-* be flexible in usage data models behind graphs used,
-* exceptional performances for local reads, by traversing the graph.
+## Traitements des données hautement connectées entre elles
+* Avec un nombre indéterminé de liens entre entités 
+* Nombreuses relations _Many-to-Many_ 
+* Quand la relation est aussi, voire plus importante que la donnée.
 
+## Des modèles flexibles
+* Où le schéma se construit au fur et à mesure des observations
+
+## Besoins de performance de traversé de graphe
+* Algorithmes puissants et rapides
+
+???
+
+Relation + importante que la donnée : 
+gestion de bande passante
+Etude des échanges entre personnes, villes
+Flux 
+
+---
+# Cas d'usage
+
+## La seule limite est l'imagination
+* Dépendances de composants (développement, industrie),
+* Identity and access management
+* Gestion d'infrastructure (CMDB)
+* Réseaux sociaux,
+* Système de recommandation (produit, diagnostiques ),
+* Détection de fraude (détection de circuit fermé),
+
+... 
 
 
 ---
@@ -411,12 +466,21 @@ CREATE (p:Person {firstName: "name"}) RETURN p
 ## Stackoverflow
 * tag `neo4j` ~ 17 000 articles 
 
+## Meetup
+* 60 000 membres
+* 120 groupes 
+* https://www.meetup.com/topics/neo4j/all/
+
 ## Community.neo4j.com
 * https://community.neo4j.com
 
 ???
+so
 numpy ~ 60 000
 pandas ~ 88 000
+
+meetup
+python 1,846,534 members 2,230 Meetups
 
 ---
 class: inverse middle center
@@ -1349,7 +1413,80 @@ class: inverse middle center
 # Côté développement
 
 ---
+# Les bases
+
+## Transaction
+
+
+---
+# Java inside
+
+## Ecosystème natif
+* Intégralité du moteur et des extensions
+* Entièrement sous Maven
+
+## Embedded with Neo
+* Possibilité d'utiliser en base interne applicative
+	* La base est démarrée par l'application
+
+```java
+GraphDatabaseService graphDb = new GraphDatabaseFactory()
+            .newEmbeddedDatabaseBuilder( databaseDir )
+            .newGraphDatabase();
+```
+
+* Tests "unitaires" avec base réelle en mémoire  
+
+```java
+graphDb = new TestGraphDatabaseFactory()
+		.newImpermanentDatabase( databaseDir );
+```
+
+
+---
+# Java inside
+
+## Accès bas niveau et hacking
+* API Core
+* API `Traversal`
+* Possibilité de créer ses propres `Traversal` (niveau expert+++)
+
+---
+# Traversal (expert)
+
+<center>
+	<img src="https://neo4j.com/docs/java-reference/current/images/graphdb-traversal-description.svg">
+</center>
+
+
+---
+# Traversal simple
+
+```java
+private Traverser getFriends(
+            final Node person ) {
+
+        TraversalDescription td = graphDb.traversalDescription()
+                .breadthFirst()
+                .relationships( RelTypes.KNOWS, Direction.OUTGOING )
+                .evaluator( Evaluators.excludeStartPosition() );
+
+
+        return td.traverse( person );
+    }
+
+```
+Depuis le node _person_,  
+trouve tous les amis   
+et les amis d'amis   
+à travers la relation de type `:KNOWS` _sortante_.
+
+
+
+---
 # LES OGM
+
+La cohérence est garantie par le modèle
 
 
 
