@@ -111,6 +111,7 @@ Un problème vieux comme l'humanité
 ## Les premières bases sont des graphes ('70)
 * CODASYL (Conference on Data Systems Languages)
 * Utilisé en _COBOL_.
+* Base _navigationnelle_
 
 .left-column[
 .center[*Modèle hiérarchique*]
@@ -126,16 +127,14 @@ Un problème vieux comme l'humanité
 </center>
 ]
 
-.reset-column[
-* Accès aux données en mode **_navigationnel_**   
-en mentionnant les relations **_explicitement_**   
-pour passer d'un _record_ à un autre.
-]
 
 .footnote[.small[ [Cours "bases de données réseau et hiérarchiques" sur sgbd.developpez.com](https://sgbd.developpez.com/tutoriels/cours-complet-bases-de-donnees/?page=bases-de-donnees-reseaux-et-hierarchiques)]]
 
 ???
 Image http://www.cs.aucegypt.edu/~csci253/DBConcepts%20v2.htm
+* Accès aux données en mode **_navigationnel_**   
+en mentionnant les relations **_explicitement_**   
+pour passer d'un _record_ à un autre.
 
 
 ---
@@ -351,6 +350,87 @@ OLAP (online Analysis Processing)
 * Analyse d'impact de maintenance réseaux (SFR)
 
 ... 
+
+---
+class: inverse middle center
+# Effet tableau blanc
+
+---
+# La représentation est le modèle
+
+## Pas de transposition dans un autre formalisme
+### Avec une base relationnelle
+_Modèle UML_
+<center>
+    <img src="images/graphs-uml-to-db.svg">
+</center>
+
+--
+
+_Modèle de données_
+<center>
+    <img src="images/graphs-uml-to-db2.svg">
+</center>
+
+
+---
+# La représentation est le modèle
+
+## Pas de transposition dans un autre formalisme
+### Avec une base graphe
+_Modèle UML_
+<center>
+    <img src="images/graphs-uml-to-db.svg">
+</center>
+
+--
+
+_Modèle de données_
+<center>
+    <img src="images/graphs-uml-to-db3.svg">
+</center>
+
+--
+
+Et c'est tout...
+
+---
+
+<a href="graphes/graph_hamilton.html" target="_blank">
+    <center>
+        <img src="graphes/graph_hamilton.png" width="100%">
+    </center>
+</a>
+
+---
+**A vous d'imaginer...**
+<center>
+    <img src="images/Sketchboard.png" width="100%">
+</center>
+
+.footnote[.small[https://sketchboard.me/]]
+
+---
+
+class: splash middle center
+
+.quote[.big[La cohérence doit  
+être garantie  
+par le processus.]]
+
+--
+
+----
+
+.quote[.big[Le traitement   
+redevient  
+le seul garant de la cohérence.]]
+
+--
+
+.quote[.big[La base   
+redevient   
+le garant du stockage de données.]]
 
 
 ---
@@ -768,7 +848,7 @@ template: cypher_101
 ---
 template: cypher_101
 
-.center[**Relation orientée &hArr; crochet et flèches**]
+.center[**Relation orientée &hArr; crochets et flèche**]
 
 <center>
   <img src="images/graphs-different_nodes.svg" height="30%">
@@ -780,7 +860,7 @@ template: cypher_101
 ---
 template: cypher_101
 
-.center[**Relation non orientée &hArr; crochet et tirés**]
+.center[**Relation non orientée &hArr; crochets et tirés**]
 
 <center>
   <img src="images/graphs-non-orienté.svg" height="30%">
@@ -840,18 +920,19 @@ template: cypher_101
 
 .center[**variable**]
 
-.center[.mega-huge[.quote[(**name**:Label {key:value})]]]
+.center[.mega-huge[.quote[(name)]]]
 
 --
 
 ## Expressions valides
 
 .center[.mega-huge[.quote[(name {key:value})]]]
-.center[.mega-huge[.quote[(name)]]]
+.center[.mega-huge[.quote[(name:Label {key:value})]]]
 
 ---
 template: cypher_101
 
+IL YA QUOI ICI
 https://neo4j.com/docs/developer-manual/current/cypher/syntax/patterns/
 
 ---
@@ -1131,88 +1212,6 @@ https://neo4j.com/docs/pdf/cypher-refcard-3.4.pdf
 <center>
   <img src="images/cypher-refcard.png" width="80%">
 </center>
-
-
----
-class: inverse middle center
-# Effet tableau blanc
-
----
-# La représentation est le modèle
-
-## Pas de transposition dans un autre formalisme
-### Avec une base relationnelle
-_Modèle UML_
-<center>
-    <img src="images/graphs-uml-to-db.svg">
-</center>
-
---
-
-_Modèle de données_
-<center>
-    <img src="images/graphs-uml-to-db2.svg">
-</center>
-
-
----
-# La représentation est le modèle
-
-## Pas de transposition dans un autre formalisme
-### Avec une base graphe
-_Modèle UML_
-<center>
-    <img src="images/graphs-uml-to-db.svg">
-</center>
-
---
-
-_Modèle de données_
-<center>
-    <img src="images/graphs-uml-to-db3.svg">
-</center>
-
---
-
-Et c'est tout...
-
----
-
-<a href="graphes/graph_hamilton.html" target="_blank">
-    <center>
-        <img src="graphes/graph_hamilton.png" width="100%">
-    </center>
-</a>
-
----
-**A vous d'imaginer...**
-<center>
-    <img src="images/Sketchboard.png" width="100%">
-</center>
-
-.footnote[.small[https://sketchboard.me/]]
-
----
-
-class: splash middle center
-
-.quote[.big[La cohérence doit  
-être garantie  
-par le processus.]]
-
---
-
-----
-
-.quote[.big[Le traitement   
-redevient  
-le seul garant de la cohérence.]]
-
---
-
-.quote[.big[La base   
-redevient   
-le garant du stockage de données.]]
 
 
 
