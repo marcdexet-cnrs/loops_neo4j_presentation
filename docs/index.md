@@ -149,10 +149,23 @@ Image http://www.cs.aucegypt.edu/~csci253/DBConcepts%20v2.htm
 </center>
 
 ## Standard de fait
-* Langage de manipulation "standardisé" SQL
+* Normalisation [SQL](https://fr.wikipedia.org/wiki/Structured_Query_Language)
+* Nombreux éditeurs et produits
+	* _Oracle, Postgres, MySQL, MariaDB, SQLServer, SQLite..._
+* Un écosystème établi et enseigné.
 
-## Nombreux éditeurs et produits
-* _Oracle, Postgres, MySQL, MariaDB, SQLServer, ..._
+.footnote[.small[[SQL:2011](https://fr.wikipedia.org/wiki/SQL:2011)]]
+
+???
+Vision unifiée: [12 règles de CODD](https://fr.wikipedia.org/wiki/12_r%C3%A8gles_de_Codd)
+
+C'est devenue un standard de fait, et la majorité des 
+les applications, sauf cas très spécifique, ont opté pour 
+l'usage des bases de donnée relationnelles.
+
+Le mérite en revient à une normalisation, plus ou moins respectée, 
+portée par l'ISO
+
 
 ---
 # L'hégémonie des Bases de Données Relationnelles
@@ -166,9 +179,50 @@ Image http://www.cs.aucegypt.edu/~csci253/DBConcepts%20v2.htm
 ## Une intégrité garantie
 
 * Les règles sont contenues dans la base.
-* Schéma, contraintes, gestion des cascades
+* Schéma, contraintes, gestion des mises à jour en cascade.
 
 ## Des qualités exigeantes mais rassurantes
+
+???
+Ce propriétés sont essentielles pour les grands consommateurs de l'époque que
+sont les banques et les assurances.
+
+L'idée est alors que la base de données est une entitée qui a elle seule peut garantir
+l'intégrité et la pérénité des données stockées.
+Les règles sont contenues dans la base sous forme de contrainte et de typage fort.
+Les relations entre tables de données sont gérées par des mécanismes forts.
+Comme le DELETE CASCADE
+
+---
+# Les limites de l'approche relationelle
+
+## Un trop plein d'ACIDité
+* Problèmes de performance complexes dans certains contextes
+ * bases distribuées, traitements répartis, sharding...
+
+--
+
+## Un manque de souplesse 
+ * Evolutions de schéma parfois casse-tête
+ * Guerre entre DBA (_Data Base Administrator_) et développeurs
+
+--
+
+## Un mélange des genres entre stockage et traitement 
+* Traitements dans la base (triggers, procédures),
+* Dispersion des règles entre le stockage (la base) et les traitements (applications)
+
+--
+
+.big[.quote[Fin du "One-Size-Fits-All" et émergence du NoSql]]
+
+???
+Avec l'explosion du web et des besoins de disponibilité, les acteurs se rendent rapidment compte que le SQL comme solution universelle
+n'est plus tenable.
+
+L'ACIDité du SQL, devient un frein. Amazon, par exemple, constate rapidement des problèmes de performance et de manitenance et développe ses propres bases.
+
+De plus, les SGBD, avec les rôles très séparés, donnent parfois lieu à de véritables guerre entre DBA, gardien des données, et développeurs, troublions perpétuels.
 
 
 ---
@@ -178,44 +232,8 @@ name: graph_renew_sql
 ---
 template: graph_renew_sql
 
-## Les limites de l'approche relationelle
-
-La fin du "One-Size-Fits-All" 
-
-### Trop d'ACIDité nuit
-* ACID => Problèmes de performance complexes dans certains contextes
- * bases distribuées, traitements répartis, sharding...
-
---
-
-## Processing, le mélange des genres
-* Nécessité de mettre du traitement dans la base
-
---
-
-### Trop rigide
-* Peu adapté à des domaines très évolutifs
- * Processus lourd
- * Evolutions de schéma parfois casse-tête
- * Guerre entre DBA (_Data Base Administrator_) et développeurs
-
---
-
-## Emergence du mouvement NoSql
-
 .center[.big[**N**ot **O**nly **SQL**]]
 
-
-???
- * Atomicité &rarr; transaction
- * Cohérence &rarr; conservation de l'intégrité
- * Isolation
- * Durabilité
-* Vision unifiée: [12 règles de CODD](https://fr.wikipedia.org/wiki/12_r%C3%A8gles_de_Codd)
-
-
----
-template: graph_renew_sql
 
 ## NoSQL, un mouvement venu du terrain
 * Initié par les acteurs du web et du big data,
@@ -303,10 +321,11 @@ Une base réseau a une notion de _nested_ avec une relation de _owner-member_
 * Quand la relation est aussi, voire plus importante que la donnée.
 
 ## Des modèles flexibles
-* Où le schéma se construit au fur et à mesure des observations
+* Où le schéma et les relations se construisent au fur et à mesure des observations
 
 ## Besoins de performance de traversé de graphe
-* Algorithmes puissants et rapides
+* Algorithmes puissants et rapides (~ ms)
+* Analyse de très gros volume de données 
 
 ???
 
@@ -314,6 +333,10 @@ Relation + importante que la donnée :
 gestion de bande passante
 Etude des échanges entre personnes, villes
 Flux 
+
+**Besoins de performance**
+OLTP (online Transaction Processing)
+OLAP (online Analysis Processing)
 
 ---
 # Cas d'usage
@@ -324,7 +347,8 @@ Flux
 * Gestion d'infrastructure (CMDB)
 * Réseaux sociaux,
 * Système de recommandation (produit, diagnostiques ),
-* Détection de fraude (détection de circuit fermé),
+* Détection de fraude (circuit fermé),
+* Analyse d'impact de maintenance réseaux (SFR)
 
 ... 
 
@@ -609,6 +633,7 @@ Absence de **schéma dans la base** qui décrit ce qui doit être.
 
 .quote[.big[La cohérence doit être garantie par le processus]]
 
+
 ---
 # Label et Type
 
@@ -671,74 +696,6 @@ Un `Traversal` est moyen de collecter des  _path_, des _noeuds_ et de _relations
 
 ## Approche declarative (WHAT)
 * Langage CYPHER
-
----
-class: inverse middle center
-# Effet tableau blanc
-
----
-# La représentation est le modèle
-
-## Pas de transposition dans un autre formalisme
-### Avec une base relationnelle
-_Modèle UML_
-<center>
-    <img src="images/graphs-uml-to-db.svg">
-</center>
-
---
-
-_Modèle de données_
-<center>
-    <img src="images/graphs-uml-to-db2.svg">
-</center>
-
-
----
-# La représentation est le modèle
-
-## Pas de transposition dans un autre formalisme
-### Avec une base graphe
-_Modèle UML_
-<center>
-    <img src="images/graphs-uml-to-db.svg">
-</center>
-
---
-
-_Modèle de données_
-<center>
-    <img src="images/graphs-uml-to-db3.svg">
-</center>
-
---
-
-Et c'est tout...
-
----
-
-<a href="graphes/graph_hamilton.html" target="_blank">
-    <center>
-        <img src="graphes/graph_hamilton.png" width="100%">
-    </center>
-</a>
-
----
-**A vous d'imaginer...**
-<center>
-    <img src="images/Sketchboard.png" width="100%">
-</center>
-
-.footnote[.small[https://sketchboard.me/]]
-
----
-
-class: splash middle center
-
-.quote[.big[La cohérence doit  
-être garantie  
-par le processus.]]
-
 ---
 class: inverse middle center
 # Cypher
@@ -1128,6 +1085,40 @@ SET a += { birthDate : date('1960-03-02'),  nationality: "british"}
 ```
 
 ---
+# MERGE
+
+Une instruction synthétisant `MATCH` et `CREATE`
+
+MERGE créé les entitée manquantes pour répondre à un pattern.
+
+Si elles existent, **`MERGE` ne fait rien**.
+
+```python
+MERGE (a:Author {lastname: "Hamilton", firstname: "Peter"}) 
+```
+--
+
+* Création du livre _Pandora's star_ et de la relation.
+
+```python
+MATCH 
+(a:Author {lastname: "Hamilton", firstname: "Peter"}) 
+MERGE (a)-[r:WRITE]->(b:Book {title: "Pandora's Star"})
+```
+
+--
+
+`ON CREATE` et `ON MATCH`
+
+```python
+MERGE (a:Author {lastname: "Hamilton", firstname: "Peter"}) 
+ON CREATE 
+	SET a.created = timestamp()
+ON MATCH 
+	SET a.lastSeen = timestamp()
+```
+
+---
 # Cypher documentation
 
 ## Référence
@@ -1140,6 +1131,90 @@ https://neo4j.com/docs/pdf/cypher-refcard-3.4.pdf
 <center>
   <img src="images/cypher-refcard.png" width="80%">
 </center>
+
+
+---
+class: inverse middle center
+# Effet tableau blanc
+
+---
+# La représentation est le modèle
+
+## Pas de transposition dans un autre formalisme
+### Avec une base relationnelle
+_Modèle UML_
+<center>
+    <img src="images/graphs-uml-to-db.svg">
+</center>
+
+--
+
+_Modèle de données_
+<center>
+    <img src="images/graphs-uml-to-db2.svg">
+</center>
+
+
+---
+# La représentation est le modèle
+
+## Pas de transposition dans un autre formalisme
+### Avec une base graphe
+_Modèle UML_
+<center>
+    <img src="images/graphs-uml-to-db.svg">
+</center>
+
+--
+
+_Modèle de données_
+<center>
+    <img src="images/graphs-uml-to-db3.svg">
+</center>
+
+--
+
+Et c'est tout...
+
+---
+
+<a href="graphes/graph_hamilton.html" target="_blank">
+    <center>
+        <img src="graphes/graph_hamilton.png" width="100%">
+    </center>
+</a>
+
+---
+**A vous d'imaginer...**
+<center>
+    <img src="images/Sketchboard.png" width="100%">
+</center>
+
+.footnote[.small[https://sketchboard.me/]]
+
+---
+
+class: splash middle center
+
+.quote[.big[La cohérence doit  
+être garantie  
+par le processus.]]
+
+--
+
+----
+
+.quote[.big[Le traitement   
+redevient  
+le seul garant de la cohérence.]]
+
+--
+
+.quote[.big[La base   
+redevient   
+le garant du stockage de données.]]
+
+
 
 ---
 class: inverse middle center
@@ -1274,7 +1349,7 @@ template: architecture
 Chaque enregistrement comporte des ID permettant de calculer la position du début de la liste suivante
 
 
-## noeud
+## Noeud
 
 ```cpp
 struct node_record { 
@@ -1284,6 +1359,8 @@ struct node_record {
   int first_property;   // id première propriété de la liste des propriétés
 }
 ```
+
+.footnote[.small[[NodeRecord](https://github.com/neo4j/neo4j/blob/3.5/community/kernel/src/main/java/org/neo4j/kernel/impl/store/record/NodeRecord.java)]]
 ---
 template: architecture
 
@@ -1314,6 +1391,8 @@ struct relationship_record {
 ```
 position(id,nature) =id * node_block_size(nature)
 ```
+
+.footnote[.small[[RelationshipRecord](https://github.com/neo4j/neo4j/blob/3.5/community/kernel/src/main/java/org/neo4j/kernel/impl/store/record/RelationshipRecord.java)]]
 
 ---
 template: architecture
@@ -1391,16 +1470,16 @@ simply proportional to the amount of the gra
 O(log(n)) vs O(1)
 
 ---
-
+template: architecture
 <center>
     <img src="https://image.slidesharecdn.com/neo4jinternals-120521030150-phpapp02/95/an-overview-of-neo4j-internals-12-1024.jpg?cb=1337569396" width="100%">
 </center>
 
 
+
 ---
 template: architecture
 
-## All Is Cached
 
 ---
 template: architecture
@@ -1413,18 +1492,88 @@ class: inverse middle center
 # Côté développement
 
 ---
-# Les bases
+# API "REST"
+_Pas vraiment REST_
 
-## Transaction
+METTRE ICI Exemple de POST
+
+---
+# Drivers et framework
+
+## Officiels et officieux
+
+## Les officiels
+
+## Les officieux
 
 
 ---
+# Mécanisme transactionnel
+
+<center>
+    <img src="images/transactions.png" width="80%">
+</center>
+
+
+---
+name: java_inside
+
 # Java inside
+
+---
+template: java_inside
 
 ## Ecosystème natif
 * Intégralité du moteur et des extensions
 * Entièrement sous Maven
 
+## Accès bas niveau et hacking
+* [API `kernel`](https://github.com/neo4j/neo4j/tree/3.5/community/kernel/src/main/java/org/neo4j/kernel) pour le hacking
+* API `Traversal`
+
+## Possibilité de créer ses propres `Traversal` 
+ * Niveau expert
+ * Choix des algorithmes `org.neo4j.graphalgo` (AStar, Dijkstra, )
+ * Optimisation des requêtes 
+
+---
+template: java_inside
+## Traversal (expert)
+
+<center>
+	<img src="https://neo4j.com/docs/java-reference/current/images/graphdb-traversal-description.svg">
+</center>
+
+
+
+---
+template: java_inside
+## Traversal simple
+
+```java
+private Traverser getFriends(
+            final Node person ) {
+
+        TraversalDescription td = graphDb.traversalDescription()
+                .breadthFirst()
+                .relationships( RelTypes.KNOWS, Direction.OUTGOING )
+                .evaluator( Evaluators.excludeStartPosition() );
+
+
+        return td.traverse( person );
+    }
+
+```
+- Depuis le node _person_,  
+- trouve tous les amis   
+- et les amis d'amis   
+- à travers la relation de type `:KNOWS` _sortante_.
+- en excluant les noeuds de dépat de chaque relation 
+
+
+---
+template: java_inside
+ 
 ## Embedded with Neo
 * Possibilité d'utiliser en base interne applicative
 	* La base est démarrée par l'application
@@ -1442,45 +1591,51 @@ graphDb = new TestGraphDatabaseFactory()
 		.newImpermanentDatabase( databaseDir );
 ```
 
-
 ---
-# Java inside
+# Python
 
-## Accès bas niveau et hacking
-* API Core
-* API `Traversal`
-* Possibilité de créer ses propres `Traversal` (niveau expert+++)
+## Neo4j driver
+* Semblable à un driver SQL
+* Des requêtes Cypher
+* Des curseurs
 
----
-# Traversal (expert)
+```python
+from neo4j.v1 import GraphDatabase
 
-<center>
-	<img src="https://neo4j.com/docs/java-reference/current/images/graphdb-traversal-description.svg">
-</center>
+driver = GraphDatabase.driver('bolt://localhost:7687')
 
+names = ['Fifi', 'Riri', 'Loulou']
 
----
-# Traversal simple
-
-```java
-private Traverser getFriends(
-            final Node person ) {
-
-        TraversalDescription td = graphDb.traversalDescription()
-                .breadthFirst()
-                .relationships( RelTypes.KNOWS, Direction.OUTGOING )
-                .evaluator( Evaluators.excludeStartPosition() );
-
-
-        return td.traverse( person );
-    }
-
+with driver.session() as session:
+        for name in names:
+            session.run('CREATE (:Person {name : {name}})', name=name)
 ```
-Depuis le node _person_,  
-trouve tous les amis   
-et les amis d'amis   
-à travers la relation de type `:KNOWS` _sortante_.
 
+
+---
+# Python
+
+## py2neo
+* wrapper du driver officiel
+* Intégration avec `Pandas`, `numpy`, `Sympy`
+* Notion de graphe local et serveur
+
+```python
+from py2neo import Graph, Node, Relationship
+
+graph = Graph()
+donald = Node('Character',name='Donald')
+
+for name in ['Fifi', 'Riri', 'Loulou']:
+    nephew = Node('Character',name=name)
+    graph.create(Relationship(donald, 'PARENT_OF',nephew))
+```
+
+---
+class: inverse middle center
+
+# Demo python
+Si pas trop en retard
 
 
 ---
@@ -1494,22 +1649,6 @@ La cohérence est garantie par le modèle
 # Extensions APOC
 
 https://neo4j-contrib.github.io/neo4j-apoc-procedures/
-
-
-class: inverse middle center
-# Un peu de théorie
-
----
-# Plan un peu de théorie
-
-* graphe &rarr; adjacence
-* parcours par pointeur
-* Traversée possible à partir d'un point de départ sans passer par un index
-* Algorithmes classiques de la théorie des graphes (plus court chemin, Dijsktra, A\*, calcul de centralité…)
-
----
-# SQL vs Graphe
-Passage obligatoire, après la théorie
 
 
 
@@ -1580,6 +1719,9 @@ Pour tester
  --env=NEO4J_AUTH=none  \
  graphfoundation/ongdb-enterprise:3.4
 ```
+
+---
+# Les solutions libres 
 
 ## Graph Stack io
 https://graphstack.io/
