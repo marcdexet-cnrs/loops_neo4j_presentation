@@ -52,7 +52,7 @@ Un _graphe_ est une structure composée de
 * noeuds (_vertex_)
 * d'arêtes (_edge_)
 
-Quand tous les noeuds sont reliés entre eux, le graphe est dit **complet**
+Les _arêtes_ relient les _noeuds_ et peuvent être **orientées**
 
 <a href="graphes/graph_03.html" target="_blank">
     <center>
@@ -109,21 +109,21 @@ Un problème vieux comme l'humanité
 # Base graphe, un vieux concept
 
 ## Les premières bases sont des graphes ('70)
-* CODASYL (Conference on Data Systems Languages)
-* Utilisé en _COBOL_.
+* CODASYL (_Conference on Data Systems Languages_)
+* Utilisé en _COBOL_,
 * Base _navigationnelle_
 
 .left-column[
 .center[*Modèle hiérarchique*]
 <center>
-    <img src="images/hierachique.png" width="200px">
+    <img src="images/hierachique.png" width="300px">
 </center>
 ]
 
 .right-column[
 .center[*Modèle en réseau*]
 <center>
-    <img src="images/reseau.png" width="200px">
+    <img src="images/reseau.png" width="300px">
 </center>
 ]
 
@@ -245,7 +245,7 @@ template: graph_renew_sql
 
 ## NoSQL, un mouvement venu du terrain
 * Initié par les acteurs du web et du big data,
-* Solutions pensées *par* et *pour* des développeurs.
+* Solutions pensées *par* et *pour* les développeurs et ingénieurs systèmes.
 
 --
 
@@ -528,7 +528,7 @@ class: inverse middle center
 .footnote[.small[https://db-engines.com/]]
 
 ---
-class: inverse middle center
+class: black_bkg middle center
 
 # Neo4j
 Welcome in the Matrix
@@ -540,21 +540,19 @@ Welcome in the Matrix
 
 Neo4j est développé par la société suédoise _Neo4j Inc._ 
 
+[200 personnes](https://neo4j.com/staff/)
+
 ## Histoire
 * **2000**: Constat d'échecs à gérer des données très connectées
-* **2002**: Premier prototype de Neo4j
-* **2007**: Création de la société Neo4j Inc.
+* **2002**: 1er prototype de Neo4j
+* **2007**: Création de la société Neotechnology.
 * **2010**: Neo4j V1 en 2010 (GPL)
 * **2016**: Neo4j V3
+* **2017**: Neotechnology &rarr; Neo4j, Inc.
+
 
 ## Clients 
 * Walmart, UBS, ebay, Cisco, LinkedIn, HP, Airbus...
-
---
-
-## Matrix
-* Film de référence et omniprésent dans la culture *neo*4J.
-
 
 ???
 Emil, Peter et Johan se battent pour trouver des connexions entre données dans une base Informix.  
@@ -564,50 +562,10 @@ Series A and Series B rounds are funding rounds for earlier stage companies and 
 
 Series C rounds and onwards are for later stage and more established companies. These rounds are usually $10M+ and are often much larger.
 
----
-# Neo4j, le produit
-
-* Développé en open-source (https://github.com/neo4j/neo4j)
-* Moteur écrit en Java
-* Extensible
-
-## Double licence
-
-* **Community** :  GPL v3
-* **Enterprise**: AGPL avec licence commerciale  
-étend la version community avec des composants en _closed source_.
-
-## Usage Open source
-La version Entreprise peut-être [utilisée pour des produits open-source](https://neo4j.com/Open-Source/) 
-
-.center[.quote["If you are building an open source project to benefit the world at large, we are pleased to offer Neo4j Enterprise Edition under the AGPL for this express use."]]
-
----
-# Neo4j, le produit
-
-## Base graphe 
-* Transactionnelle ACID
-* Haute disponibilité
-
 --
 
-## Plusieurs drivers
-
-* _Officiels_ : java, python, javascript, .Net.
-* _Community_ : Ruby, PHP, R, Go, Erlang, C/C++, Clojure, Perl, Haskell
-
---
-
-## Plusieurs API 
-* Endpoint REST like 
-* Protocole BOLT : connecté binaire sur TCP ou web sockets.
-
---
-
-## Un langage CYPHER
-```python
-CREATE (p:Person {firstName: "name"}) RETURN p
-```
+## Matrix
+* Film de référence et omniprésent dans la culture *neo*4j
 
 
 ---
@@ -631,6 +589,65 @@ pandas ~ 88 000
 
 meetup
 python 1,846,534 members 2,230 Meetups
+
+
+---
+# Neo4j, le produit
+
+## Base Graphe 
+* Transactionnelle ACID
+* Développée en open-source (https://github.com/neo4j/neo4j)
+* Moteur écrit en Java (8)
+* Extensible
+* Capacités 
+	* 34 milliards de noeuds
+	* 34 milliards de relations
+* Haute disponibilité (_Entreprise_)
+
+--
+
+## Double licence
+
+* **Community** :  GPL v3
+* **Enterprise**: AGPL avec licence commerciale
+ * _Community_ + composants _closed source_  
+
+---
+class: splash center middle
+
+## Usage Open source
+* Version *Entreprise* [utilisable pour des produits open-source](https://neo4j.com/Open-Source/) 
+
+.center[.quote["If you are building an open source project  
+to benefit the world at large,  
+we are pleased to offer Neo4j Enterprise Edition under the AGPL  
+for this express use."]]
+
+---
+# Neo4j, l'écosytème
+
+## Une application web 
+* _browser_
+
+--
+
+## Des drivers
+
+* _Officiels_ : java, python, javascript, .Net.
+* _Community_ : Ruby, PHP, R, Go, Erlang, C/C++, Clojure, Perl, Haskell
+
+--
+
+## Des APIs et des protocoles 
+* API HTTP 
+* Protocole BOLT : connecté binaire sur TCP ou web sockets.
+
+--
+
+## Un langage CYPHER
+```python
+CREATE (p:Person {firstName: "name"}) RETURN p
+```
 
 ---
 class: inverse middle center
@@ -813,7 +830,7 @@ Un `Path` est un ensemble de _noeuds_ et de _relations_ reliant
 ---
 # Traversal
 
-Un `Traversal` est moyen de collecter des  _path_, des _noeuds_ et de _relations_ en suivant des règles et un algorithme.
+Un `Traversal` est moyen de collecter des  _paths_, des _noeuds_ et des _relations_ en suivant des règles et un algorithme.
 
 ## Approche impérative (HOW)
 * Framework java uniquement
@@ -975,11 +992,6 @@ template: cypher_101
 .center[.mega-huge[.quote[(name {key:value})]]]
 .center[.mega-huge[.quote[(name:Label {key:value})]]]
 
----
-template: cypher_101
-
-IL YA QUOI ICI
-https://neo4j.com/docs/developer-manual/current/cypher/syntax/patterns/
 
 ---
 template: cypher_101
@@ -1014,6 +1026,8 @@ template: cypher_101
 (a:Author)-->(b:Book)<--(r:Reader)
 ```
 ]]
+
+https://neo4j.com/docs/developer-manual/current/cypher/syntax/patterns/
 
 ---
 name: cypher_clause
@@ -1116,7 +1130,6 @@ template: cypher_create
 
 ```python
 CREATE (a:Author {lastname: "Hamilton", firstname: "Peter"})
-RETURN a
 ```
 
 --
@@ -1127,7 +1140,6 @@ RETURN a
 CREATE 
 (a:Author {lastname: "Hamilton", firstname: "Peter"}),
 (b:Book {title: "Pandora's Star"})
-RETURN a,b
 ```
 
 --
@@ -1139,7 +1151,6 @@ CREATE
 (a:Author {lastname: "Hamilton", firstname: "Peter"}),
 (b:Book {title: "Pandora's Star"}),
 (a)-[r:WRITE]->(b)
-RETURN a,b,r
 ```
 
 
@@ -1155,8 +1166,6 @@ MATCH
 (b:Book {title: "Pandora's Star"})
 
 CREATE (a)-[r:WRITE]->(b)
-
-RETURN a,b,r
 ```
 
 
@@ -1174,6 +1183,7 @@ template:  cypher_modificate
 ```python
 MATCH 
 (a:Author {lastname: "Hamilton", firstname: "Peter"}) 
+
 SET a.birthDate = date('1960-03-02')
 ```
 
@@ -1185,6 +1195,7 @@ template:  cypher_modificate
 ```python
 MATCH 
 (a:Author {lastname: "Hamilton", firstname: "Peter"}) 
+
 REMOVE a.birthDate
 ```
 
@@ -1196,18 +1207,22 @@ template:  cypher_modificate
 --
 
 * Ecrasement des propriétés avec `=`
+
 ```python
 MATCH 
 (a:Author {lastname: "Hamilton", firstname: "Peter"}) 
+
 SET a = { lastname: "Foo", firstname: "BAR"}
 ```
 
 --
 
 * Complétions des propriétés avec `+=`
+
 ```python
 MATCH 
 (a:Author {lastname: "Hamilton", firstname: "Peter"}) 
+
 SET a += { birthDate : date('1960-03-02'),  nationality: "british"}
 ```
 
@@ -1243,6 +1258,52 @@ ON CREATE
 	SET a.created = timestamp()
 ON MATCH 
 	SET a.lastSeen = timestamp()
+```
+---
+
+# Procédures APOC _Awesome Procedures On Cypher_
+
+
+## Une APOC pour chaque situation
+* Plus de 350 dans les sandox
+* Installable comme des plugins 
+ (un simple .jar)
+* Fournis par la communauté (neo4j-contrib) 
+
+## Exemple de catégories
+* Indexes et recherche textuelle
+* Phonétique
+* Conversion
+* Algorithmes graphes 
+* Spatiale (geocode !)
+* Intégration (JSON, CSV, JDBC, XML, ElasticSearch,...)
+* Manipulation de graphes (refactoring)
+* Tâches d'administraion et récurrentes
+* triggers
+* ...
+
+.footnote[[Neo4j APOC](https://neo4j-contrib.github.io/neo4j-apoc-procedures/)]
+
+
+---
+# Procédures APOC _Awesome Procedures On Cypher_
+
+## Utilisation
+
+### Avec CALL
+
+```python
+MATCH (n:Airport {iata: "ORY"}),(m:Airport {iata: "AVN"})
+
+CALL apoc.algo.dijkstra(n,m,'DISTANCIATED','distance') YIELD path, weight
+
+RETURN path, weight
+```
+
+### En ligne
+
+```python
+RETURN example.join(['A','quick','brown','fox'],' ') as sentence
 ```
 
 ---
@@ -1366,13 +1427,35 @@ template: architecture
 
 ### Index-free adjacency
 * Pas d'index **partagé** ou **global**
-* Chaque noeud est un micro-index local de ses voisins
-* Il suffit de suivre les liens (_relations_)
-* Le coût est proportionel au graphe parcouru, pas au volume total de données.
+* Chaque noeud contient un index local de ses voisins
+
+### Traverser un graphe
+* Suivre les _relations_
+* Coût proportionel au graphe parcouru, pas au volume total de données.
   * La recherche par index &rarr; _O_( ln(n) )
-  * Le saut à une position &rarr; O(1)
+  * Le saut à une position &rarr; _O_(1)
 
 .footnote[[Analyse de la complexité des algorithmes](https://fr.wikipedia.org/wiki/Analyse_de_la_complexit%C3%A9_des_algorithmes)]  
+
+???
+Pas de HOTSPOT sur les indexes.
+
+A database engine that utilizes index-free adjacency is one in which each node main‐
+tains  direct  references  to  its  adjacent  nodes.  Each  node,  therefore,  acts  as  a  micro-
+index  of  other  nearby  nodes,  which  is  much  cheaper  than  using  global  indexes.  It
+means that query times are independent of the total size of the graph, and are instead
+simply proportional to the amount of the gra
+
+O(log(n)) vs O(1)
+
+
+
+
+---
+template: architecture
+<center>
+    <img src="https://image.slidesharecdn.com/neo4jinternals-120521030150-phpapp02/95/an-overview-of-neo4j-internals-12-1024.jpg?cb=1337569396" width="100%">
+</center>
 
 ---
 template: architecture
@@ -1381,11 +1464,19 @@ template: architecture
 ## All Is Linked List
 * Tout est _liste chaînée_
 * Tous les enregistrements sont de tailles fixes
-* Parcourir un objet consiste à
- * calculer l'identifiant d'une struture
- * parcourir la liste de valeurs
-* Le parcours est réversible
 
+## Calcul de position direct
+
+```python 
+position(id,nature) = id * node_block_size(nature)
+```
+
+Parcourir un graphe consiste à
+* calculer la position d'une structure,
+* atteindre l'enregistrement,
+* parcourir la liste de valeurs.
+
+Le parcours est réversible.
 
 ---
 template: architecture
@@ -1431,11 +1522,6 @@ struct relationship_record {
 }
 ```
 
-**calcul de position**
-
-```
-position(id,nature) =id * node_block_size(nature)
-```
 
 .footnote[.small[[RelationshipRecord](https://github.com/neo4j/neo4j/blob/3.5/community/kernel/src/main/java/org/neo4j/kernel/impl/store/record/RelationshipRecord.java)]]
 
@@ -1498,59 +1584,24 @@ template: architecture
 
 
 ---
-template: architecture
-
-<center>
-    <img src="images/Graph_Databases_2e_Neo4j pdf.png">
-</center>
-
-
-???
-A database engine that utilizes index-free adjacency is one in which each node main‐
-tains  direct  references  to  its  adjacent  nodes.  Each  node,  therefore,  acts  as  a  micro-
-index  of  other  nearby  nodes,  which  is  much  cheaper  than  using  global  indexes.  It
-means that query times are independent of the total size of the graph, and are instead
-simply proportional to the amount of the gra
-
-O(log(n)) vs O(1)
-
----
-template: architecture
-<center>
-    <img src="https://image.slidesharecdn.com/neo4jinternals-120521030150-phpapp02/95/an-overview-of-neo4j-internals-12-1024.jpg?cb=1337569396" width="100%">
-</center>
-
-
-
----
-template: architecture
-
-
----
-template: architecture
-
-## Indexation
-* Indexes _Lucène_
-
----
 class: inverse middle center
 # Côté développement
 
 ---
-# API "REST"
-_Pas vraiment REST_
+# Drivers
 
-METTRE ICI Exemple de POST
+## Les drivers officiels
+* java, python, javascript, .Net., Go
+* Exclusivement le protocole _bolt://_
+* Pool de connexion
 
----
-# Drivers et framework
 
-## Officiels et officieux
+## Les drivers officieux
+* Fournis par la communauté
+* [Ruby](https://neo4j.com/developer/ruby/), [PHP](https://neo4j.com/developer/php/), [R](https://neo4j.com/developer/r/), [Erlang](https://neo4j.com/developer/erlang_elixir/), [C/C++](https://neo4j.com/developer/c/), [Clojure](https://neo4j.com/developer/clojure/), [Perl](https://neo4j.com/developer/perl/), [Haskell](https://neo4j.com/developer/haskell/)
+* Beaucoup utilisent l'_API HTTP_.
 
-## Les officiels
-
-## Les officieux
-
+.footnote[[Drivers Neo4j](https://neo4j.com/docs/driver-manual/current/get-started/)]
 
 ---
 # Mécanisme transactionnel
@@ -1559,6 +1610,76 @@ METTRE ICI Exemple de POST
     <img src="images/transactions.png" width="80%">
 </center>
 
+---
+# HTTP API
+
+* Chasse l'API REST (deprecated), 
+* Un seul endpoint
+
+`db/data/transaction/commit`
+
+
+```python
+POST http://localhost:7474/db/data/transaction/commit
+
+accept: application/json
+content-type: application/json
+authorization: Basic bmVvNGo6cG9pbnRlcnMtY3JhbXBzLXJha2U=
+
+---
+
+{
+  "statements": [
+    {
+      "statement": "MATCH path=(n)-[r]-(p) RETURN n, r, p LIMIT 1",
+      "resultDataContents" : [ "graph" ]
+    }
+  ]
+}
+```
+
+.footnote[[Documentation HTTP API](https://neo4j.com/docs/http-api/current/)]
+
+---
+# HTTP API
+
+.outline-13[
+
+```json
+{
+   "results":[
+      {
+         "columns":["n","r","p"],
+         "data":[
+            {
+               "graph":{
+                  "nodes":[
+                     {  "id":"0",
+                        "labels":["Service"],
+                        "properties":{"name":"Informatique"}
+                     },
+                     {  "id":"53",
+                        "labels":["Person"],
+                        "properties":{"name":"Andrée Laforest"}
+                     }
+                  ],
+                  "relationships":[
+                     {  "id":"6",
+                        "type":"MEMBER_OF",
+                        "startNode":"53",
+                        "endNode":"0",
+                        "properties":{}
+                     }
+                  ]
+               }
+            }
+         ]
+      }
+   ],
+   "errors":[]
+}
+```
+]
 
 ---
 name: java_inside
@@ -1572,9 +1693,13 @@ template: java_inside
 * Intégralité du moteur et des extensions
 * Entièrement sous Maven
 
+--
+
 ## Accès bas niveau et hacking
 * [API `kernel`](https://github.com/neo4j/neo4j/tree/3.5/community/kernel/src/main/java/org/neo4j/kernel) pour le hacking
 * API `Traversal`
+
+--
 
 ## Possibilité de créer ses propres `Traversal` 
  * Niveau expert
@@ -1688,19 +1813,19 @@ Si pas trop en retard
 ---
 # OGM _Object Graph Mapping_
 
-* Le meilleure moyen de garantir la cohérence est passer par une application.
-* La bonne pratique est de reposer sur un OGM ( équivelent ORM)
+## L'application est le modèle
+* Le meilleure moyen de garantir la cohérence.
+* La bonne pratique est d'utiliser un OGM ( équivalent ORM)
 
-.big[.quote[La cohérence est garantie par le modèle]]
+.center[.big[.quote[La cohérence est garantie   
+par la formalisation  
+du modèle.]]]
 
-## Illsutration 
-
-* java
-OGM neo4j et Spring Data neo4j (repose sur OGM neo4j)
-* python
 
 ---
-# OGM Neo4j java
+# Java
+
+## OGM Neo4j 
 .footnote[[Manuel](https://neo4j.com/docs/ogm-manual/current/)]
 
 ```java
@@ -1728,15 +1853,9 @@ class Service {
 ```
 
 ---
-class: inverse middle center
+# Python
 
-# Démo OGM neomodel
-Si pas trop en retard
-
-
-
----
-# OGM Python neomodel
+## neomodel
 
 OGM à la Django
 
@@ -1761,49 +1880,12 @@ class Service(StructuredNode):
 
 
 ---
-# Procédures APOC _Awesome Procedures On Cypher_
+class: inverse middle center
+
+# Démo OGM neomodel
+Si pas trop en retard
 
 
-## Une APOC pour chaque situation
-* Plus de 350 dans les sandox
-* Installable comme des plugins 
- (un simple .jar)
-* Fournis par la communauté (neo4j-contrib) 
-
-## Exemple de catégories
-* Indexes et recherche textuelle
-* Phonétique
-* Conversion
-* Algorithmes graphes 
-* Spatiale (geocode !)
-* Intégration (JSON, CSV, JDBC, XML, ElasticSearch,...)
-* Manipulation de graphes (refactoring)
-* Tâches d'administraion et récurrentes
-* triggers
-* ...
-
-.footnote[[Neo4j APOC](https://neo4j-contrib.github.io/neo4j-apoc-procedures/)]
-
----
-# Procédures APOC _Awesome Procedures On Cypher_
-
-## Utilisation
-
-### Avec CALL
-
-```python
-MATCH (n:Airport {iata: "ORY"}),(m:Airport {iata: "AVN"})
-
-CALL apoc.algo.dijkstra(n,m,'DISTANCIATED','distance') YIELD path, weight
-
-RETURN path, weight
-```
-
-### En ligne
-
-```python
-RETURN example.join(['A','quick','brown','fox'],' ') as sentence
-```
 
 ---
 # Procédures APOC _Awesome Procedures On Cypher_
@@ -1831,16 +1913,6 @@ public class Join
 .footnote[[Exemple de création APOC](https://neo4j.com/blog/intro-user-defined-procedures-apoc/)]
 
 
-
-
----
-class: inverse middle center
-# Sous le capot
-* Neo4j utilise assez habilement des indexes et de  l'adjacence. Les indexes pour localiser les points de départs
-
-* https://neo4j.com/blog/graph-search-algorithm-basics/
-
-
 ---
 class: inverse middle center
 # Ce qui fâche
@@ -1851,7 +1923,7 @@ class: splash middle center
 
 # La version community est-elle insuffisante ?
 
-TLDR; **Non**
+TLDR; **Pas vraiment**
 
 ---
 # La version community est-elle insuffisante ?
@@ -1877,10 +1949,6 @@ Comparatif (https://neo4j.com/subscriptions/)
 * Impossible à budgétiser dans notre contexte
 
 .big[.quote[Possibilité de bénéficier de la licence EDU en cours d'étude]]
-
----
-# Contrôle Accès
-C'est le gros point faible de la base neo4j. des contrôles moins sommairs ne sont disponibles qu'en version Enterprise.
 
 ---
 # Les solutions libres 
@@ -1917,41 +1985,56 @@ docker run \
 ```
 
 ---
+class: inverse middle
+# Conclusion
 
-Des problèmes de licence
+* Une approche libératrice pour toute une classe de problèmes
+* Un produit mature et séduisant
+* Une communauté motrice
+* Une politique commerciale inquiétante
 
-https://twitter.com/bradnussbaum/status/1064527006933676034
-
-
----
-# machine learning
-
----
-# Cosmic Web
-
-* http://cosmicweb.kimalbrecht.com/viz/#1
-
----
-# Cas volovo
-https://fr.slideshare.net/neo4j/volvo-cars-build-a-car-with-neo4j
-
----
-# Capacités 
-
-* 34 milliards de noeuds
-* 34 milliards de relations
-
+# Merci 
 
 ---
 class: inverse middle center
 # Annexes et références
 
-# Bases graphes
-* https://hal.inria.fr/hal-01444505/document
+---
 
-## Index-free adjacency
-### Pro
+# Bases graphes
+* [Graph Databases: Their Power and Limitations Jaroslav Pokorný](https://hal.inria.fr/hal-01444505/document)
+
+---
+# Tutos
+
+* https://stph.scenari-community.org/contribs/nos/Neo4j2/co/Neo4j-2.html
+* https://blog.octo.com/bases-de-donnees-graphes-un-tour-dhorizon/
+
+---
+# Neo4j internals
+
+* https://fr.slideshare.net/thobe/an-overview-of-neo4j-internals
+* https://www.slideshare.net/anikishaev/neo4j-after-1-year-in-production
+* https://hackernoon.com/life-after-1-year-of-using-neo4j-4eca5ce95bf5
+* https://image.slidesharecdn.com/neo4jinternals-120521030150-phpapp02/95/an-overview-of-neo4j-internals-12-728.jpg?cb=1337569396
+
+---
+# Cas d'études
+
+## Cas volovo
+https://fr.slideshare.net/neo4j/volvo-cars-build-a-car-with-neo4j
+
+## Cosmic Web
+* http://cosmicweb.kimalbrecht.com/viz/#1
+
+## Panama's paper
+https://fr.slideshare.net/neo4j/investigating-the-panama-papers-connections-with-neo4j-stefan-komar-neo4j
+
+
+---
+# Index-free adjacency
+## Pro
 * https://neo4j.com/blog/native-vs-non-native-graph-technology/
 
-### Cons
+## Cons
 * https://www.arangodb.com/2016/04/index-free-adjacency-hybrid-indexes-graph-databases/

@@ -51,6 +51,15 @@ code {
 .outline-code > pre .remark-code {
   font-size: 10px;
 }
+.outline-12 > pre .remark-code {
+  font-size: 12px;
+}
+.outline-13 > pre .remark-code {
+  font-size: 13px;
+}
+.outline-14 > pre .remark-code {
+  font-size: 14px;
+}
 .outline-code-medium > pre .remark-code {
   font-size: 15px;
 }
@@ -75,6 +84,11 @@ code {
   color: #ffffff;
   text-shadow: 0 0 20px #333;
 }
+
+.splash a {
+  color: #ffffff;
+}
+
 .splash-tip {
   background: #2d8686;
   color: #ffffff;
@@ -97,6 +111,8 @@ code {
 }
 .black_bkg {
   background: #000000;
+  color: #ffffff;
+  text-shadow: 0 0 20px #333;
 }
 
 .remark-slide > .left { text-align:left;}
