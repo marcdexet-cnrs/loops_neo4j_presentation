@@ -79,7 +79,18 @@ code {
   background: #2d8686;
   color: #ffffff;
   text-shadow: 0 0 20px #862d2d;
-}      
+} 
+
+.splash-grey {
+  background: #b4bdb8;
+  color: #242524;
+  text-shadow: 0 0 20px #7d8480;
+}
+
+.splash-grey a {
+    color: #242524;
+}
+
 .refactor {
   border: 3px dotted #A40902;
   border-radius: 6px;

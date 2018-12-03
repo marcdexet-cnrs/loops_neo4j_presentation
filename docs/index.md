@@ -183,6 +183,9 @@ portée par l'ISO
 ## Des qualités exigeantes mais rassurantes
 
 ???
+l'hégémonie repose sur le respect des propriétés ACID
+
+
 Ce propriétés sont essentielles pour les grands consommateurs de l'époque que
 sont les banques et les assurances.
 
@@ -199,11 +202,23 @@ Comme le DELETE CASCADE
 * Problèmes de performance complexes dans certains contextes
  * bases distribuées, traitements répartis, sharding...
 
+???
+Avec l'explosion du web et des besoins de disponibilité, les acteurs se rendent rapidment compte que le SQL comme solution universelle
+n'est plus tenable.
+
+
+L'ACIDité du SQL, devient un frein. Amazon, par exemple, constate rapidement des problèmes de performance et de manitenance et développe ses propres bases.
+
 --
 
 ## Un manque de souplesse 
+ * Schemas rigides
  * Evolutions de schéma parfois casse-tête
  * Guerre entre DBA (_Data Base Administrator_) et développeurs
+
+???
+De plus, les SGBD, avec les rôles très séparés, donnent parfois lieu à de véritables guerre entre DBA, gardien des données, et développeurs, troublions perpétuels qui veulent apporter de la nouveauté.
+
 
 --
 
@@ -215,13 +230,7 @@ Comme le DELETE CASCADE
 
 .big[.quote[Fin du "One-Size-Fits-All" et émergence du NoSql]]
 
-???
-Avec l'explosion du web et des besoins de disponibilité, les acteurs se rendent rapidment compte que le SQL comme solution universelle
-n'est plus tenable.
 
-L'ACIDité du SQL, devient un frein. Amazon, par exemple, constate rapidement des problèmes de performance et de manitenance et développe ses propres bases.
-
-De plus, les SGBD, avec les rôles très séparés, donnent parfois lieu à de véritables guerre entre DBA, gardien des données, et développeurs, troublions perpétuels.
 
 
 ---
@@ -242,6 +251,9 @@ template: graph_renew_sql
 
 ## Disparité des approches
 * Avant tout recherche de solutions en dehors des bases SQL.
+
+???
+Les mouvement SQL est proétiforme et se caractérise avant tout par une recherche de solution en dehors du canon SQL.
 
 --
 
@@ -266,6 +278,16 @@ Légitimation par le théorème CAP ([Eric A. Brewer](https://en.wikipedia.org/w
 </center>
 
 .footnote[.small[[Maitrisez le théorème de CAP](https://openclassrooms.com/fr/courses/4462426-maitrisez-les-bases-de-donnees-nosql/4462471-maitrisez-le-theoreme-de-cap)]]
+
+
+???
+L'approche NoSQL est légitimée par le théorème CAP qui quelque part brise espèce d'hésitation
+à renoncer aux bases SQL réconfortantes et bien connues de tous.
+
+Face aux nouveaux besoins, le théorème CAP dit en gros qu'il ne sera jamais possible de tout avoir.
+
+Autant partir sur de nouvelles solutions.
+
 
 ---
 # Base graphe, le renouveau NoSQL
@@ -348,9 +370,27 @@ OLAP (online Analysis Processing)
 * Système de recommandation (produit, diagnostiques ),
 * Détection de fraude (circuit fermé),
 * Analyse d'impact de maintenance réseaux (SFR)
+...
 
-... 
+---
+class: inverse center
+**The Cosmic Web Of Galaxy**
+<iframe src="http://cosmicweb.barabasilab.com/" width="100%" height="500px"/>
 
+http://cosmicweb.barabasilab.com/
+
+https://dzone.com/articles/neo4j-30-and-the-graph-of-the-universe
+
+
+---
+class: splash-grey center
+**Panama's Paper**
+
+<center>
+	<img src="images/panamaspaper.png">
+</center>
+
+https://fr.slideshare.net/neo4j/investigating-the-panama-papers-connections-with-neo4j-stefan-komar-neo4j
 ---
 class: inverse middle center
 # Effet tableau blanc
@@ -434,7 +474,11 @@ le garant du stockage de données.]]
 
 
 ---
-# Les principaux acteurs
+class: inverse middle center
+# Bases graphes, le marché
+
+---
+# Bases graphes, le marché
 
 ## Les bases graphes sont toujours très minoritaires...
 
@@ -446,7 +490,7 @@ le garant du stockage de données.]]
 .footnote[.small[https://db-engines.com/]]
 
 ---
-# Les principaux acteurs
+# Bases graphes, le marché
 
 ## ... mais elles intéressent de plus en plus.
 
@@ -459,7 +503,7 @@ le garant du stockage de données.]]
 
 
 ---
-# Les principaux acteurs
+# Bases graphes, le marché
 
 ## Parmis ces bases, Neo4j
 
@@ -472,7 +516,7 @@ le garant du stockage de données.]]
 
 
 ---
-# Les principaux acteurs
+# Bases graphes, le marché
 
 ## Parmis ces bases, Neo4j
 
@@ -488,6 +532,8 @@ class: inverse middle center
 
 # Neo4j
 Welcome in the Matrix
+
+<img src="images/wikipedia_Digital_rain_animation_small_letters_shine.gif">
 
 ---
 # Neo4j, la société
@@ -1614,8 +1660,8 @@ with driver.session() as session:
 ---
 # Python
 
-## py2neo
-* wrapper du driver officiel
+## Py2neo
+* Wrapper du driver officiel
 * Intégration avec `Pandas`, `numpy`, `Sympy`
 * Notion de graphe local et serveur
 
@@ -1630,6 +1676,8 @@ for name in ['Fifi', 'Riri', 'Loulou']:
     graph.create(Relationship(donald, 'PARENT_OF',nephew))
 ```
 
+.footnote[[py2neo](https://py2neo.org/v4/)]
+
 ---
 class: inverse middle center
 
@@ -1638,16 +1686,150 @@ Si pas trop en retard
 
 
 ---
-# LES OGM
+# OGM _Object Graph Mapping_
 
-La cohérence est garantie par le modèle
+* Le meilleure moyen de garantir la cohérence est passer par une application.
+* La bonne pratique est de reposer sur un OGM ( équivelent ORM)
+
+.big[.quote[La cohérence est garantie par le modèle]]
+
+## Illsutration 
+
+* java
+OGM neo4j et Spring Data neo4j (repose sur OGM neo4j)
+* python
+
+---
+# OGM Neo4j java
+.footnote[[Manuel](https://neo4j.com/docs/ogm-manual/current/)]
+
+```java
+@NodeEntity
+class Person {
+    String name;
+
+    @Relationship(type = "WORK_IN")
+    Set<Project> projects;
+
+    @Relationship(type = "MEMBER_OF")
+    Service service;
+}
+
+
+@NodeEntity
+class Service {
+    String name;
+
+    @Relationship(type="MEMBER_OF", direction = Relationship.INCOMING)
+    Set<Person> members;
+}
+...
+
+```
+
+---
+class: inverse middle center
+
+# Démo OGM neomodel
+Si pas trop en retard
 
 
 
 ---
-# Extensions APOC
+# OGM Python neomodel
 
-https://neo4j-contrib.github.io/neo4j-apoc-procedures/
+OGM à la Django
+
+```python
+from neomodel import (StructuredNode, StringProperty, RelationshipTo, RelationshipFrom)
+
+
+class Person(StructuredNode):
+    name = StringProperty(unique_index=True, required=True)
+    projects = RelationshipTo('Project', 'WORK_IN')
+    service = RelationshipTo('Project', 'MEMBER_OF')
+
+class Service(StructuredNode):
+    name = StringProperty(unique_index=True, required=True)
+    members = RelationshipFrom('Person','MEMBER_OF')
+
+...
+
+```
+
+* Très bien documenté &hearts;
+
+
+---
+# Procédures APOC _Awesome Procedures On Cypher_
+
+
+## Une APOC pour chaque situation
+* Plus de 350 dans les sandox
+* Installable comme des plugins 
+ (un simple .jar)
+* Fournis par la communauté (neo4j-contrib) 
+
+## Exemple de catégories
+* Indexes et recherche textuelle
+* Phonétique
+* Conversion
+* Algorithmes graphes 
+* Spatiale (geocode !)
+* Intégration (JSON, CSV, JDBC, XML, ElasticSearch,...)
+* Manipulation de graphes (refactoring)
+* Tâches d'administraion et récurrentes
+* triggers
+* ...
+
+.footnote[[Neo4j APOC](https://neo4j-contrib.github.io/neo4j-apoc-procedures/)]
+
+---
+# Procédures APOC _Awesome Procedures On Cypher_
+
+## Utilisation
+
+### Avec CALL
+
+```python
+MATCH (n:Airport {iata: "ORY"}),(m:Airport {iata: "AVN"})
+
+CALL apoc.algo.dijkstra(n,m,'DISTANCIATED','distance') YIELD path, weight
+
+RETURN path, weight
+```
+
+### En ligne
+
+```python
+RETURN example.join(['A','quick','brown','fox'],' ') as sentence
+```
+
+---
+# Procédures APOC _Awesome Procedures On Cypher_
+
+## Création
+
+* Dynamique d'extension encouragée et bien [documentée](https://neo4j.com/docs/java-reference/current/extending-neo4j/procedures/) 
+
+```java
+public class Join
+{
+    @UserFunction
+    @Description("example.join(['s1','s2',...], delimiter) - join the given strings with the given delimiter.")
+    public String join(
+            @Name("strings") List<String> strings,
+            @Name(value = "delimiter", defaultValue = ",") String delimiter) {
+        if (strings == null || delimiter == null) {
+            return null;
+        }
+        return String.join(delimiter, strings);
+    }
+}
+
+```
+.footnote[[Exemple de création APOC](https://neo4j.com/blog/intro-user-defined-procedures-apoc/)]
+
 
 
 
